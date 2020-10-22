@@ -1,9 +1,9 @@
-import { SpawnOptions } from 'child_process';
+import { SpawnOptions, exec, ExecOptions } from 'child_process';
 import { spawn } from 'cross-spawn';
 // import { TranformStream } from './TransformStream';
 
 export namespace PromisifySpawnLib {
-  export interface Options extends SpawnOptions {}
+  export interface Options extends ExecOptions {}
 
   export interface Result {
     code: number;
@@ -17,19 +17,18 @@ export const CODE_ERROR = 10086;
 
 export const promisifySpawn = (
   command: string,
-  argumentList: Array<string>,
   options: PromisifySpawnLib.Options = {}
 ) =>
   new Promise<PromisifySpawnLib.Result>((resolve, reject) => {
-    const task = spawn(command, argumentList, { ...options, stdio: 'pipe' });
+    const task = exec(command, { ...options });
 
     const cache: Array<Buffer> = [];
 
-    task.stdout.on('data', chunk => {
+    task.stdout!.on('data', chunk => {
       cache.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
     });
 
-    task.stderr.on('data', chunk => {
+    task.stderr!.on('data', chunk => {
       cache.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
     });
 

@@ -1,5 +1,4 @@
 import inquirer from 'inquirer';
-import ora from 'ora';
 
 enum EnumCommitType {
   feat = 'feat',
