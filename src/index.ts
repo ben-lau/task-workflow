@@ -1,4 +1,5 @@
-import { context } from './context';
+import { Context } from './context';
+import { contextData } from './context/initialData';
 import { startTask } from './scheduler';
 
-startTask(context);
+startTask(Context.create(contextData));

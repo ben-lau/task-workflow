@@ -57,11 +57,12 @@ export const askForCommitDetails = async () => {
       type: 'input',
       name: 'message',
       message: '填写提交内容',
+      filter: mes => mes.trim(),
       validate(input) {
-        const message = String(input).trim();
-        if (message.length === 0) {
+        const mes = String(input).trim();
+        if (mes.length === 0) {
           return '请输入本次提交内容';
-        } else if (message.length > 70) {
+        } else if (mes.length > 70) {
           return '提交内容不能超过70个字';
         } else {
           return true;

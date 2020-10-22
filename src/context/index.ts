@@ -1,5 +1,7 @@
 import { contextData } from './initialData';
 
+type AnyObject = Record<string, any>;
+
 let instance: Context;
 
 export class Context {
@@ -7,13 +9,12 @@ export class Context {
     isCi: process.env.CI === 'true',
   };
 
-  static create = () => instance ?? (instance = new Context());
+  static create = (initialData: AnyObject) =>
+    instance ?? (instance = new Context(initialData));
 
-  private constructor() {}
+  private constructor(private _data: AnyObject) {}
 
-  private _data = contextData;
-
-  setData(data: Record<string, any>) {
+  setData(data: AnyObject) {
     this._data = {
       ...this._data,
       ...data,
@@ -25,4 +26,4 @@ export class Context {
   }
 }
 
-export const context = Context.create();
+// export const context = Context.create();

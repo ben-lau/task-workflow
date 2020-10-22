@@ -1,12 +1,13 @@
 import { contextData } from './initialData';
+declare type AnyObject = Record<string, any>;
 export declare class Context {
+    private _data;
     readonly env: {
         isCi: boolean;
     };
-    static create: () => Context;
+    static create: (initialData: AnyObject) => Context;
     private constructor();
-    private _data;
-    setData(data: Record<string, any>): void;
-    getData(keyName: keyof typeof contextData): string;
+    setData(data: AnyObject): void;
+    getData(keyName: keyof typeof contextData): any;
 }
-export declare const context: Context;
+export {};
