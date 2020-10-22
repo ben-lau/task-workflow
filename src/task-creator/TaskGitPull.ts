@@ -2,7 +2,6 @@ import { TaskCreator } from './base';
 
 export class TaskGitPull<T> extends TaskCreator<T> {
   async onStart() {
-    console.log('onStart');
     return true;
   }
 
