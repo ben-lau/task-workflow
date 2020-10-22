@@ -1,20 +1,20 @@
-import { execute, executeInSlient } from '../utils/execute';
+import { git, gitInSlient } from '../utils/execute/git';
 import { CODE_SUCCESS } from '../utils/execute/promisify-spawn';
 import { tips } from '../utils/tips';
 
 const RegConflictMessage = /CONFLICT/;
 
 export const gitCommit = async (message: string) => {
-  const { message: status } = await execute(`git status -z -u`);
+  const { message: status } = await git('status', '-z', '-u');
 
   if (!status) {
     tips.error('无需要提交的文件');
     return;
   }
 
-  await execute(`git add -A`);
-  await execute(`git commit -m "${message}"`);
-  const pullResult = await executeInSlient(`git pull`);
+  await git('add', '-A');
+  await git('commit', '-m', message);
+  const pullResult = await gitInSlient('pull');
 
   if (
     pullResult.code !== CODE_SUCCESS &&
@@ -23,5 +23,5 @@ export const gitCommit = async (message: string) => {
     tips.error('发现冲突，请解决后再提交');
     return;
   }
-  await executeInSlient(`git push origin`);
+  await gitInSlient('push', 'origin');
 };
