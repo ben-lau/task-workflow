@@ -4,6 +4,7 @@ import ora from 'ora';
 enum EnumCommitType {
   feat = 'feat',
   fix = 'fix',
+  build = 'build',
   style = 'style',
   refactor = 'refactor',
   test = 'test',
@@ -22,6 +23,10 @@ const commitTypeMap: CommitTypeMap = {
   [EnumCommitType.fix]: {
     name: '修复',
     value: EnumCommitType.fix,
+  },
+  [EnumCommitType.build]: {
+    name: '构建打包',
+    value: EnumCommitType.build,
   },
   [EnumCommitType.style]: {
     name: '代码样式',

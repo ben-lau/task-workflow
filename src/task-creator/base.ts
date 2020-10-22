@@ -1,11 +1,9 @@
 import { Context } from '../context';
 
 export class TaskCreator<T extends Context> implements ILifeHooks<T> {
-  taskName = '';
+  taskName = '默认任务';
 
   protected state = {};
-
-  constructor() {}
 
   async onStart(_context: T) {
     return true;
