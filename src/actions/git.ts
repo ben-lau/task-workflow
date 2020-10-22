@@ -21,7 +21,7 @@ export const gitCommit = async (message: string) => {
   }
 
   await git('add', '-A');
-  await git('commit', '-m', `"${message}"`);
+  await git('commit', '-m', `${message}`);
   const pullResult = await gitInSlient('pull');
 
   if (
