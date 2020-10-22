@@ -1,5 +1,9 @@
 export class TaskCreator<T> implements ILifeHooks<T> {
-  constructor(protected state = {}) {}
+  taskName = '';
+
+  protected state = {};
+
+  constructor() {}
 
   async onStart(_context: T) {
     return true;
@@ -7,7 +11,7 @@ export class TaskCreator<T> implements ILifeHooks<T> {
 
   async run(_context: T) {}
 
-  async onDone(_context: T, _prevTaskResult: any) {}
+  async onDone(_context: T, _prevTaskResult: any): Promise<any> {}
 
   callHook<H extends keyof ILifeHooks<T>>(
     hook: H,

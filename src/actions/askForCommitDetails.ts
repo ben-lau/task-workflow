@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import ora from 'ora';
 
 enum EnumCommitType {
   feat = 'feat',
@@ -40,7 +41,7 @@ const commitTypeMap: CommitTypeMap = {
   },
 };
 
-const askForCommitDetails = async () => {
+export const askForCommitDetails = async () => {
   const { type, message } = await inquirer.prompt([
     {
       type: 'list',
@@ -66,7 +67,3 @@ const askForCommitDetails = async () => {
   ]);
   return `[${type}]: ${message}`;
 };
-
-(async () => {
-  console.log(await askForCommitDetails());
-})();
