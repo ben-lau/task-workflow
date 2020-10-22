@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "CommonJS",
+    "declaration": true,
+    "strict": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "/",
+    "outDir": "./lib/",
+    "types": ["node"]
+  },
+  "include": ["./src/"]
+}

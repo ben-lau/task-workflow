@@ -1,0 +1,34 @@
+{
+  "name": "ik-gz-git",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Ben Lau(liubaobin@inke.cn)",
+  "license": "MIT",
+  "bin": {
+    "ik-gz-git": "lib/index.js"
+  },
+  "scripts": {
+    "postinstall": "echo \"\u001b[36m\u001b[1m\nThanks for using task-workflow! \nIf you have any good suggestions or questions, please let me know\u001b[0m\n\"",
+    "start": "npm run build && node lib/index.js",
+    "build": "rm -rf lib/ && tsc",
+    "version:patch": "npm version patch && git push origin"
+  },
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "@types/inquirer": "^7.3.1",
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0",
+    "cross-spawn": "^7.0.3",
+    "inquirer": "^7.3.3",
+    "ora": "^5.1.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.8",
+    "@types/cross-spawn": "^6.0.2"
+  }
+}
