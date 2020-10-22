@@ -17,11 +17,11 @@ export const CODE_ERROR = 10086;
 
 export const promisifySpawn = (
   command: string,
+  argumentList: Array<string>,
   options: PromisifySpawnLib.Options = {}
 ) =>
   new Promise<PromisifySpawnLib.Result>((resolve, reject) => {
-    const [cmd, ...args] = command.split(' ');
-    const task = spawn(cmd, args, { ...options, stdio: 'pipe' });
+    const task = spawn(command, argumentList, { ...options, stdio: 'pipe' });
 
     const cache: Array<Buffer> = [];
 

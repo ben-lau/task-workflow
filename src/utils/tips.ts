@@ -3,10 +3,13 @@ import chalk from 'chalk';
 import path from 'path';
 import fs from 'fs';
 import { formatToDateTime } from './date';
+import { wait } from './timer';
 
 const HOME_DIR = process.env.HOME!;
 
 const LOG_DIR = path.resolve(HOME_DIR, '.ik-gz-log');
+
+const DEBUG_MODE = false;
 
 const FatalReport: MethodDecorator = (
   target,
@@ -19,7 +22,20 @@ const FatalReport: MethodDecorator = (
       writeDownErrorLog(args.join(' '));
       originValue.apply(this, args);
     } catch (err) {
-      tips.fail(err);
+      tips.warn(err);
+    }
+  };
+};
+
+const ExitProcess: MethodDecorator = (
+  target,
+  key,
+  desc: TypedPropertyDescriptor<any>
+) => {
+  const originValue = desc.value;
+  desc.value = function (...args: any[]) {
+    try {
+      originValue.apply(this, args);
     } finally {
       process.exit();
     }
@@ -27,6 +43,9 @@ const FatalReport: MethodDecorator = (
 };
 
 const writeDownErrorLog = (message: string) => {
+  if (!DEBUG_MODE) {
+    return;
+  }
   const fileName = `${LOG_DIR}/${formatToDateTime(Date.now())}.log`;
   try {
     if (!fs.existsSync(LOG_DIR)) {
@@ -34,7 +53,7 @@ const writeDownErrorLog = (message: string) => {
     }
     fs.appendFileSync(fileName, message);
   } catch (err) {
-    tips.fail(err);
+    tips.warn(err);
   }
 };
 
@@ -59,10 +78,11 @@ class Tips {
     return this.loading.info(chalk.blue(message));
   }
 
-  fail(message: string) {
-    return this.loading.fail(chalk.red(message));
+  warn(message: string) {
+    return this.loading.warn(chalk.yellow(message));
   }
 
+  @ExitProcess
   @FatalReport
   error(message: string) {
     return this.loading.fail(chalk.red(message));

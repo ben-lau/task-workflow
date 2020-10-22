@@ -1,32 +1,30 @@
 import { TaskAsk } from '../task-creator/TaskAsk';
 import { TaskCreator } from '../task-creator/base';
-import { TaskGitPull } from '../task-creator/TaskGitPull';
+import { TaskGitPush } from '../task-creator/TaskGitPush';
 import { compose, Middleware, Next } from '../utils/compose';
-import { TypeContext, context } from './global';
+import { Context } from '../context';
 import { tips } from '../utils/tips';
 
-const createTaskQueue = <T>(
+const createTaskQueue = (
   taskList: Array<typeof TaskCreator>
-): Array<Middleware<T>> =>
-  taskList.map((Creator, index) => async (context: T, next: Next) => {
-    const task = new Creator<T>();
+): Array<Middleware<Context>> =>
+  taskList.map((Creator, index) => async (_context: Context, next: Next) => {
+    const task = new Creator<Context>();
     const taskIndex = index + 1;
     // 打印空行
     taskIndex !== 0 && console.log('');
 
     tips.info(`=====${taskIndex}、开始【${task.taskName}】=====`);
 
-    const shouldStart = await task.callHook('onStart', context);
+    const shouldStart = await task.callHook('onStart', _context);
 
-    shouldStart && (await task.callHook('run', context));
+    shouldStart && (await task.callHook('run', _context));
 
     tips.info(`=====${taskIndex}、【${task.taskName}】完成=====`);
 
     const prevTaskResult = await next();
 
-    return await task.callHook('onDone', context, prevTaskResult);
+    return await task.callHook('onDone', _context, prevTaskResult);
   });
 
-compose<TypeContext>(
-  createTaskQueue([TaskAsk, TaskGitPull, TaskGitPull, TaskGitPull, TaskGitPull])
-)(context);
+export const startTask = compose(createTaskQueue([TaskAsk, TaskGitPush]));

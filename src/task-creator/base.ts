@@ -1,4 +1,6 @@
-export class TaskCreator<T> implements ILifeHooks<T> {
+import { Context } from '../context';
+
+export class TaskCreator<T extends Context> implements ILifeHooks<T> {
   taskName = '';
 
   protected state = {};

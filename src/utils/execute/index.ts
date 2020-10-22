@@ -13,24 +13,38 @@ const getErrorMessageInExecute = (
 
 export const execute = async (
   command: string,
+  argumentList: Array<string>,
   options: PromisifySpawnLib.Options = {}
 ): Promise<PromisifySpawnLib.Result> => {
   try {
-    return await promisifySpawn(command, options);
+    return await promisifySpawn(command, argumentList, options);
   } catch (err) {
     tips.error(getErrorMessageInExecute(err, command));
     return err;
   }
 };
 
-export const executeInSlient = async (
+export const executeWithoutBreak = async (
   command: string,
+  argumentList: Array<string>,
   options: PromisifySpawnLib.Options = {}
 ): Promise<PromisifySpawnLib.Result> => {
   try {
-    return await promisifySpawn(command, options);
+    return await promisifySpawn(command, argumentList, options);
   } catch (err) {
-    tips.fail(getErrorMessageInExecute(err, command));
+    tips.warn(getErrorMessageInExecute(err, command));
+    return err;
+  }
+};
+
+export const executeInSlient = async (
+  command: string,
+  argumentList: Array<string>,
+  options: PromisifySpawnLib.Options = {}
+): Promise<PromisifySpawnLib.Result> => {
+  try {
+    return await promisifySpawn(command, argumentList, options);
+  } catch (err) {
     return err;
   }
 };
