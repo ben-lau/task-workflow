@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "/",
-    "outDir": "./lib/",
+    "outDir": "./lib",
     "types": ["node"]
   },
   "include": ["./src/"]
