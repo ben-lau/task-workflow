@@ -2,7 +2,7 @@ import { git, gitInSlient } from '../utils/execute/git';
 import { CODE_SUCCESS } from '../utils/execute/promisify-spawn';
 import { tips } from '../utils/tips';
 
-const RegConflictMessage = /CONFLICT/;
+const RegConflictMessage = /CONFLICT/i;
 
 export const gitCommit = async (message: string) => {
   tips.showLoading('检查工作区');

@@ -4,7 +4,10 @@ const padZero = (value: string | number, length: number) =>
 /**
  * 按规则格式化日期：yyyy-MM-dd (HH)hh:mm:ss:SSS
  */
-export const dateFormater = (_date: Date | number | string, rule: string) => {
+export const dateFormater = (
+  _date: Date | number | string,
+  rule: string
+): string => {
   const date = new Date(_date);
   const rulesMap = {
     'M+': date.getMonth() + 1, //月份

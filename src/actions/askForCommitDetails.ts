@@ -45,7 +45,7 @@ const commitTypeMap: CommitTypeMap = {
   },
 };
 
-export const askForCommitDetails = async () => {
+export const askForCommitDetails = async (): Promise<string> => {
   const { type, message } = await inquirer.prompt([
     {
       type: 'list',

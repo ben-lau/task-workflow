@@ -9,9 +9,13 @@ export class TaskCreator<T extends Context> implements ILifeHooks<T> {
     return true;
   }
 
-  async run(_context: T) {}
+  async run(_context: T) {
+    return;
+  }
 
-  async onDone(_context: T, _prevTaskResult: any): Promise<any> {}
+  async onDone(_context: T, _prevTaskResult: any): Promise<any> {
+    return;
+  }
 
   callHook<H extends keyof ILifeHooks<T>>(
     hook: H,

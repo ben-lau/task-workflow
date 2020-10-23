@@ -3,7 +3,6 @@ import chalk from 'chalk';
 import path from 'path';
 import fs from 'fs';
 import { formatToDateTime } from './date';
-import { wait } from './timer';
 
 const HOME_DIR = process.env.HOME!;
 
