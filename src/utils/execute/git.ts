@@ -1,13 +1,13 @@
-import { execute, executeWithoutBreak, executeInSlient } from '.';
+import { EnumExecuteLevel, execute } from '.';
 
 export const git = (...args: Array<string>) => {
-  return execute('git', args);
+  return execute('git', args, { level: EnumExecuteLevel.Fatal });
 };
 
 export const gitWithoutBreak = (...args: Array<string>) => {
-  return executeWithoutBreak('git', args);
+  return execute('git', args, { level: EnumExecuteLevel.Warn });
 };
 
-export const gitInSlient = (...args: Array<string>) => {
-  return executeInSlient('git', args);
+export const gitInSilent = (...args: Array<string>) => {
+  return execute('git', args, { level: EnumExecuteLevel.None });
 };

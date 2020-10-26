@@ -1,5 +1,5 @@
 import { askForCommitDetails } from '../actions/askForCommitDetails';
-import { Context } from '../context';
+import { Context } from '../contexts';
 import { TaskCreator } from './base';
 
 export class TaskAsk extends TaskCreator<Context> {

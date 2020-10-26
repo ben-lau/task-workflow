@@ -1,6 +1,15 @@
 import { promisifySpawn, PromisifySpawnLib } from './promisify-spawn';
 import { tips } from '../tips';
 
+interface ExecuteOptions extends PromisifySpawnLib.Options {
+  level?: EnumExecuteLevel;
+}
+export enum EnumExecuteLevel {
+  None,
+  Warn,
+  Fatal,
+}
+
 const getErrorMessageInExecute = (
   error: PromisifySpawnLib.Result | Error,
   command: string
@@ -14,37 +23,16 @@ const getErrorMessageInExecute = (
 export const execute = async (
   command: string,
   argumentList: Array<string>,
-  options: PromisifySpawnLib.Options = {}
+  options: ExecuteOptions = {}
 ): Promise<PromisifySpawnLib.Result> => {
   try {
     return await promisifySpawn(command, argumentList, options);
   } catch (err) {
-    tips.error(getErrorMessageInExecute(err, command));
-    return err;
-  }
-};
-
-export const executeWithoutBreak = async (
-  command: string,
-  argumentList: Array<string>,
-  options: PromisifySpawnLib.Options = {}
-): Promise<PromisifySpawnLib.Result> => {
-  try {
-    return await promisifySpawn(command, argumentList, options);
-  } catch (err) {
-    tips.warn(getErrorMessageInExecute(err, command));
-    return err;
-  }
-};
-
-export const executeInSlient = async (
-  command: string,
-  argumentList: Array<string>,
-  options: PromisifySpawnLib.Options = {}
-): Promise<PromisifySpawnLib.Result> => {
-  try {
-    return await promisifySpawn(command, argumentList, options);
-  } catch (err) {
+    if (options.level === EnumExecuteLevel.Fatal) {
+      tips.error(getErrorMessageInExecute(err, command));
+    } else if (options.level === EnumExecuteLevel.Warn) {
+      tips.warn(getErrorMessageInExecute(err, command));
+    }
     return err;
   }
 };

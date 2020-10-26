@@ -1,4 +1,4 @@
-import { Context } from '../context';
+import { Context } from '../contexts';
 
 export class TaskCreator<T extends Context> implements ILifeHooks<T> {
   taskName = '默认任务';

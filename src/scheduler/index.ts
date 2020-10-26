@@ -2,7 +2,7 @@ import { TaskAsk } from '../task-creator/TaskAsk';
 import { TaskCreator } from '../task-creator/base';
 import { TaskGitPush } from '../task-creator/TaskGitPush';
 import { compose, Middleware, Next } from '../utils/compose';
-import { Context } from '../context';
+import { Context } from '../contexts';
 import { tips } from '../utils/tips';
 
 const createTaskQueue = (
@@ -12,7 +12,7 @@ const createTaskQueue = (
     const task = new Creator<Context>();
     const taskIndex = index + 1;
     // 打印空行
-    taskIndex !== 0 && console.log('');
+    tips.log('');
 
     tips.info(`=====${taskIndex}、开始【${task.taskName}】=====`);
 

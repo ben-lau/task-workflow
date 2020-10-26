@@ -73,6 +73,10 @@ class Tips {
     return this.loading.succeed(chalk.green(message));
   }
 
+  log(message: string) {
+    return console.log(chalk.white(message));
+  }
+
   info(message: string) {
     return this.loading.info(chalk.blue(message));
   }

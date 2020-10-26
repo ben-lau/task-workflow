@@ -1,4 +1,4 @@
-import { git, gitInSlient } from '../utils/execute/git';
+import { git, gitInSilent } from '../utils/execute/git';
 import { CODE_SUCCESS } from '../utils/execute/promisify-spawn';
 import { tips } from '../utils/tips';
 
@@ -20,7 +20,7 @@ export const gitCommit = async (message: string) => {
   await git('commit', '-m', message);
 
   tips.showLoading('拉取远程');
-  const pullResult = await gitInSlient('pull');
+  const pullResult = await gitInSilent('pull');
 
   if (
     pullResult.code !== CODE_SUCCESS &&
@@ -31,6 +31,7 @@ export const gitCommit = async (message: string) => {
   }
 
   tips.showLoading('推送至远程');
-  await gitInSlient('push', 'origin');
+  await gitInSilent('push', 'origin');
+  
   tips.hideLoading();
 };
