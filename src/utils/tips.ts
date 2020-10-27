@@ -1,14 +1,10 @@
 import ora from 'ora';
 import chalk from 'chalk';
-import path from 'path';
 import fs from 'fs';
 import { formatToDateTime } from './date';
+import { Environment } from '../constants';
 
-const HOME_DIR = process.env.HOME!;
-
-const LOG_DIR = path.resolve(HOME_DIR, '.ik-gz-log');
-
-const DEBUG_MODE = false;
+const LOG_DIR = Environment.DIR_STORAGE;
 
 const FatalReport: MethodDecorator = (
   target,
@@ -42,7 +38,7 @@ const ExitProcess: MethodDecorator = (
 };
 
 const writeDownErrorLog = (message: string) => {
-  if (!DEBUG_MODE) {
+  if (!Environment.DEBUG_MODE) {
     return;
   }
   const fileName = `${LOG_DIR}/${formatToDateTime(Date.now())}.log`;

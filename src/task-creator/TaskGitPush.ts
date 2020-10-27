@@ -1,5 +1,5 @@
 import { gitCommit } from '../actions/git';
-import { Context } from '../context';
+import { Context } from '../contexts';
 import { TaskCreator } from './base';
 
 export class TaskGitPush extends TaskCreator<Context> {

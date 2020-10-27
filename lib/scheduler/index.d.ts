@@ -1,2 +1,2 @@
-import { Context } from '../context';
+import { Context } from '../contexts';
 export declare const startTask: import("../utils/compose").Composed<Context>;

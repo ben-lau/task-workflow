@@ -1,4 +1,11 @@
 import { PromisifySpawnLib } from './promisify-spawn';
-export declare const execute: (command: string, argumentList: Array<string>, options?: PromisifySpawnLib.Options) => Promise<PromisifySpawnLib.Result>;
-export declare const executeWithoutBreak: (command: string, argumentList: Array<string>, options?: PromisifySpawnLib.Options) => Promise<PromisifySpawnLib.Result>;
-export declare const executeInSlient: (command: string, argumentList: Array<string>, options?: PromisifySpawnLib.Options) => Promise<PromisifySpawnLib.Result>;
+interface ExecuteOptions extends PromisifySpawnLib.Options {
+    level?: EnumExecuteLevel;
+}
+export declare enum EnumExecuteLevel {
+    None = 0,
+    Warn = 1,
+    Fatal = 2
+}
+export declare const execute: (command: string, argumentList: Array<string>, options?: ExecuteOptions) => Promise<PromisifySpawnLib.Result>;
+export {};
