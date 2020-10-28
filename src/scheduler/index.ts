@@ -13,13 +13,13 @@ export class Scheduler {
       // 打印空行
       tips.log('');
 
-      tips.info(`=====${taskIndex}、开始【${task.taskName}】=====`);
+      tips.log(`=====${taskIndex}、开始【${task.taskName}】=====`);
 
       const shouldStart = await task.callHook('onStart');
 
       shouldStart && (result = await task.callHook('run', prev));
 
-      tips.info(`=====${taskIndex}、【${task.taskName}】完成=====`);
+      tips.log(`=====${taskIndex}、【${task.taskName}】完成=====`);
 
       const nextTaskResult = await next(result);
 

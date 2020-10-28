@@ -70,7 +70,7 @@ class Tips {
   }
 
   log(message: string) {
-    return console.log(chalk.white(message));
+    return console.log(chalk.blue(message));
   }
 
   info(message: string) {
