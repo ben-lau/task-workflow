@@ -5,7 +5,7 @@
   "author": "Ben Lau(408736066@qq.com)",
   "license": "MIT",
   "bin": {
-    "task-start": "lib/src/index.js"
+    "task-start": "lib/index.js"
   },
   "files": [
     "lib/"

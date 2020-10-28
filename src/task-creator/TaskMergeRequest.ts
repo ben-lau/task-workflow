@@ -1,15 +1,16 @@
 import { TaskCreator } from '.';
+import { createMergeRequest } from '../actions/createMergeRequest';
+import { store } from '../contexts/store';
 
 export class TaskMergeRequest extends TaskCreator {
   taskName = '提交merge request';
 
   async run() {
-    // const context = this.context;
-    // createMergeRequest({
-    //   title: context.getData('commitMessage'),
-    //   targetBranch: context.getData('targetBranch'),
-    //   sourceBranch: context.getData('sourceBranch'),
-    //   projectId: context.getData('projectId'),
-    // });
+    createMergeRequest({
+      title: store.getData('commitMessage'),
+      targetBranch: store.getData('targetBranch'),
+      sourceBranch: store.getData('sourceBranch'),
+      projectId: store.getData('projectId'),
+    });
   }
 }

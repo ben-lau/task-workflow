@@ -17,18 +17,19 @@ export class Scheduler {
 
       const shouldStart = await task.callHook('onStart');
 
-      shouldStart && (result = await task.callHook('run', prev));
+      if (shouldStart) {
+        result = await task.callHook('run', prev);
+        tips.log(`=====${taskIndex}、【${task.taskName}】完成=====`);
+      } else {
+        tips.log(`=====${taskIndex}、【${task.taskName}】被跳过=====`);
+      }
 
-      tips.log(`=====${taskIndex}、【${task.taskName}】完成=====`);
-
-      const nextTaskResult = await next(result);
-
-      return await task.callHook('onDone', nextTaskResult);
+      return await task.callHook('onDone', await next(result));
     });
   }
 
-  start() {
+  start(launchOptions?: any) {
     const launcher = compose(this.taskQueue);
-    return launcher();
+    return launcher(launchOptions);
   }
 }
