@@ -1,10 +1,8 @@
 import { Context } from '.';
 
-export const contextData = {
+export const store = new Context({
   projectId: '',
   sourceBranch: '',
   targetBranch: '',
   commitMessage: '', // 提交内容
-};
-
-export const context = new Context(contextData);
+});

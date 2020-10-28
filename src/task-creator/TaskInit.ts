@@ -1,5 +1,4 @@
-import { Context } from '../contexts';
-import { TaskCreator } from './base';
+import { TaskCreator } from '.';
 
 export class TaskInit extends TaskCreator {
   taskName = '获取初始化配置';

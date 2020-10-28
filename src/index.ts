@@ -1,5 +1,5 @@
-import { Context } from './contexts';
-import { contextData } from './contexts/initialData';
-import { startTask } from './scheduler';
+import { Scheduler } from './scheduler';
+import { TaskAsk } from './task-creator/TaskAsk';
+import { TaskGitPush } from './task-creator/TaskGitPush';
 
-startTask(new Context(contextData));
+new Scheduler([TaskAsk, TaskGitPush]).start();

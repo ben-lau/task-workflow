@@ -1,28 +1,34 @@
-import { TaskAsk } from '../task-creator/TaskAsk';
-import { TaskCreator } from '../task-creator/base';
-import { TaskGitPush } from '../task-creator/TaskGitPush';
-import { compose, Next } from '../utils/compose';
+import { TaskCreator } from '../task-creator';
+import { compose, Middleware } from '../utils/compose';
 import { tips } from '../utils/tips';
 
-const createTaskQueue = (taskList: Array<typeof TaskCreator>) =>
-  taskList.map((Creator, index) => async (prev: any, next: Next) => {
-    const task = new Creator();
-    const taskIndex = index + 1;
-    let result: any;
-    // 打印空行
-    tips.log('');
+export class Scheduler {
+  private taskQueue: Array<Middleware>;
 
-    tips.info(`=====${taskIndex}、开始【${task.taskName}】=====`);
+  constructor(taskList: Array<typeof TaskCreator>) {
+    this.taskQueue = taskList.map((Creator, index) => async (prev, next) => {
+      const task = new Creator();
+      const taskIndex = index + 1;
+      let result: unknown;
+      // 打印空行
+      tips.log('');
 
-    const shouldStart = await task.callHook('onStart');
+      tips.info(`=====${taskIndex}、开始【${task.taskName}】=====`);
 
-    shouldStart && (result = await task.callHook('run', prev));
+      const shouldStart = await task.callHook('onStart');
 
-    tips.info(`=====${taskIndex}、【${task.taskName}】完成=====`);
+      shouldStart && (result = await task.callHook('run', prev));
 
-    const nextTaskResult = await next(result);
+      tips.info(`=====${taskIndex}、【${task.taskName}】完成=====`);
 
-    return await task.callHook('onDone', nextTaskResult);
-  });
+      const nextTaskResult = await next(result);
 
-export const startTask = compose(createTaskQueue([TaskAsk, TaskGitPush]));
+      return await task.callHook('onDone', nextTaskResult);
+    });
+  }
+
+  start() {
+    const launcher = compose(this.taskQueue);
+    return launcher();
+  }
+}

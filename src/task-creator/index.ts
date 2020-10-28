@@ -13,10 +13,16 @@ export class TaskCreator implements ILifeHooks {
     return true;
   }
 
+  /**
+   * @description run的参数能获取上一个任务run的返回
+   */
   async run(_prevTaskParams: any): Promise<any> {
     return;
   }
 
+  /**
+   * @description onDone的参数是下一个任务onDone的返回
+   */
   async onDone(_nextTaskResult: any): Promise<any> {
     return;
   }

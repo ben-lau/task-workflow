@@ -1,7 +1,5 @@
-import { TaskCreator } from './base';
+import { TaskCreator } from '.';
 export declare class TaskGitPush extends TaskCreator {
     taskName: string;
-    run({ commitMessage }: {
-        commitMessage: string;
-    }): Promise<void>;
+    run(): Promise<void>;
 }

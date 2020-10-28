@@ -1,6 +1,4 @@
-import { createMergeRequest } from '../actions/createMergeRequest';
-import { Context } from '../contexts';
-import { TaskCreator } from './base';
+import { TaskCreator } from '.';
 
 export class TaskMergeRequest extends TaskCreator {
   taskName = '提交merge request';

@@ -1,4 +1,4 @@
-export declare type Next = (p: any) => Promise<any>;
-export declare type Middleware<T> = (context: T, next: Next) => Promise<any>;
-export declare type Composed<T> = (context?: T, next?: Next) => Promise<any>;
-export declare const compose: <T>(middlewares: Middleware<T>[]) => Composed<T>;
+export declare type Next = (p: unknown) => Promise<unknown>;
+export declare type Middleware = (params: unknown, next: Next) => Promise<unknown>;
+export declare type Composed = (params?: unknown, next?: Next) => Promise<unknown>;
+export declare const compose: (middlewares: Array<Middleware>) => Composed;

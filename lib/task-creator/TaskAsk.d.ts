@@ -1,7 +1,5 @@
-import { TaskCreator } from './base';
+import { TaskCreator } from '.';
 export declare class TaskAsk extends TaskCreator {
     taskName: string;
-    run(): Promise<{
-        commitMessage: string;
-    }>;
+    run(): Promise<void>;
 }
