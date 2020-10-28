@@ -1,13 +1,9 @@
-import { contextData } from './initialData';
-declare type AnyObject = Record<string, any>;
-export declare class Context {
+export declare class Context<T> {
     private _data;
     readonly env: {
         isCi: boolean;
     };
-    static create: (initialData: AnyObject) => Context;
-    private constructor();
-    setData(data: AnyObject): void;
-    getData(keyName: keyof typeof contextData): any;
+    constructor(_data: T);
+    setData(data: Partial<T>): void;
+    getData(keyName: keyof T): T[keyof T];
 }
-export {};

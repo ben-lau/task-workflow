@@ -1,6 +1,7 @@
-import { Context } from '../contexts';
 import { TaskCreator } from './base';
-export declare class TaskAsk extends TaskCreator<Context> {
+export declare class TaskAsk extends TaskCreator {
     taskName: string;
-    run(context: Context): Promise<void>;
+    run(): Promise<{
+        commitMessage: string;
+    }>;
 }

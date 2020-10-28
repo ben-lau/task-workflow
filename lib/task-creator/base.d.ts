@@ -1,14 +1,14 @@
-import { Context } from '../contexts';
-export declare class TaskCreator<T extends Context> implements ILifeHooks<T> {
+interface ILifeHooks {
+    onStart?(): Promise<boolean>;
+    run?(_prevTaskParams: any): Promise<any>;
+    onDone?(_nextTaskResult: any): Promise<any>;
+}
+export declare class TaskCreator implements ILifeHooks {
     taskName: string;
     protected state: {};
-    onStart(_context: T): Promise<boolean>;
-    run(_context: T): Promise<void>;
-    onDone(_context: T, _prevTaskResult: any): Promise<any>;
-    callHook<H extends keyof ILifeHooks<T>>(hook: H, ...params: Parameters<this[H]>): ReturnType<this[H]>;
+    onStart(): Promise<boolean>;
+    run(_prevTaskParams: any): Promise<any>;
+    onDone(_nextTaskResult: any): Promise<any>;
+    callHook<H extends keyof ILifeHooks>(hook: H, ...params: Parameters<this[H]>): ReturnType<this[H]>;
 }
-export interface ILifeHooks<T> {
-    onStart(_context: T): Promise<boolean>;
-    run(_context: T): Promise<any>;
-    onDone(_context: T, _prevTaskResult: any): Promise<any>;
-}
+export {};

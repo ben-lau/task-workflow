@@ -1,6 +1,7 @@
-import { Context } from '../contexts';
 import { TaskCreator } from './base';
-export declare class TaskGitPush extends TaskCreator<Context> {
+export declare class TaskGitPush extends TaskCreator {
     taskName: string;
-    run(context: Context): Promise<void>;
+    run({ commitMessage }: {
+        commitMessage: string;
+    }): Promise<void>;
 }
