@@ -5,7 +5,7 @@
   "author": "Ben Lau(408736066@qq.com)",
   "license": "MIT",
   "bin": {
-    "task-start": "lib/index.js"
+    "task-start": "bin/task-start"
   },
   "files": [
     "lib/"
@@ -43,26 +43,21 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
     "axios": "^0.20.0",
     "chalk": "^4.1.0",
     "commander": "^6.1.0",
     "cross-spawn": "^7.0.3",
     "inquirer": "^7.3.3",
-    "node-rsa": "^1.1.1",
     "open": "^7.3.0",
     "ora": "^5.1.0",
-    "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   },
   "devDependencies": {
-    "@types/node-rsa": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
     "@types/cross-spawn": "^6.0.2",
     "@types/inquirer": "^7.3.1",
     "@types/node": "^14.11.8",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
     "eslint": "^7.11.0",
     "husky": "^4.3.0"
   }

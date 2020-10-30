@@ -1,5 +1,8 @@
 import { Scheduler } from './scheduler';
-import { TaskAsk } from './task-creator/TaskAsk';
+import { TaskCommitMessage } from './task-creator/TaskCommitMessage';
+import { TaskGitMerge } from './task-creator/TaskGitMerge';
 import { TaskGitPush } from './task-creator/TaskGitPush';
 
-new Scheduler([TaskAsk, TaskGitPush]).start();
+// export default new Scheduler([TaskGitMerge]).start();
+
+export default new Scheduler([TaskCommitMessage, TaskGitPush]).start();

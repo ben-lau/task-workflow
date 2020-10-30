@@ -22,10 +22,59 @@ export namespace Environment {
   export const FILE_USER_ACCOUNT = path.resolve(DIR_STORAGE, 'user_account');
 }
 
-export namespace Key {
-  export const publicKey =
-    'MFswDQYJKoZIhvcNAQEBBQADSgAwRwJAddqe+u8H6xslXHwcRKaf4AU+hTsSSFi99E0wba+YcXmpr4b/uMSUTRKWYDsj2nTB2LUMdV/Kq1XInvh2i03oswIDAQAB';
+export namespace Commit {
+  export enum EnumTypes {
+    feat = 'feat',
+    fix = 'fix',
+    build = 'build',
+    style = 'style',
+    refactor = 'refactor',
+    test = 'test',
+    chore = 'chore',
+    conflict = 'conflict',
+    merge = 'merge',
+  }
 
-  export const privateKey =
-    'MIIBOQIBAAJAddqe+u8H6xslXHwcRKaf4AU+hTsSSFi99E0wba+YcXmpr4b/uMSUTRKWYDsj2nTB2LUMdV/Kq1XInvh2i03oswIDAQABAkBN+piEilIf8rc2yXvexK02CeJDP0GqkuUk10n62VuxgJu0Cpkwk8cPwOfq1D9/COjEC43CZ1vHrkIvHLG6YF4pAiEArq7X5V/fhmpSp3DrLcgWK8cNBksHgtbIRgp7CltuPgcCIQCst2f2aqWvxEBtoPPElGysaiBmkoCT7BWhoAnG5WwU9QIgMEzGA3VL7/WsHwI49PKzNq2WK1xJmmLbA4rYVJfNVrcCIG1Tuw8T+sUDqPS8CRHKEfAhTVkgKxt3OUoRj57C4mNxAiEAkKY41iA6efs8LGUG7/OO+YfpBGRQXCf1T1F7BbMmSy4=';
+  interface TypesMap {
+    [p: string]: { name: string; value: string };
+  }
+
+  export const typesMap: TypesMap = {
+    [EnumTypes.feat]: {
+      name: '新功能',
+      value: EnumTypes.feat,
+    },
+    [EnumTypes.fix]: {
+      name: '修复',
+      value: EnumTypes.fix,
+    },
+    [EnumTypes.build]: {
+      name: '构建打包',
+      value: EnumTypes.build,
+    },
+    [EnumTypes.style]: {
+      name: '代码样式',
+      value: EnumTypes.style,
+    },
+    [EnumTypes.refactor]: {
+      name: '重构（不新增功能也不是修改bug）',
+      value: EnumTypes.refactor,
+    },
+    [EnumTypes.test]: {
+      name: '添加测试',
+      value: EnumTypes.test,
+    },
+    [EnumTypes.chore]: {
+      name: '流程或工具更改',
+      value: EnumTypes.chore,
+    },
+    [EnumTypes.conflict]: {
+      name: '冲突解决',
+      value: EnumTypes.conflict,
+    },
+    [EnumTypes.merge]: {
+      name: '代码合并',
+      value: EnumTypes.merge,
+    },
+  };
 }

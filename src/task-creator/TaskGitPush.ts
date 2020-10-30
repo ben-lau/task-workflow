@@ -1,4 +1,4 @@
-import { gitCommit } from '../actions/git';
+import { gitCommit, gitPush } from '../actions/git';
 import { TaskCreator } from '.';
 import { store } from '../contexts/store';
 
@@ -7,5 +7,6 @@ export class TaskGitPush extends TaskCreator {
 
   async run() {
     await gitCommit(store.getData('commitMessage'));
+    await gitPush();
   }
 }

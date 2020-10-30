@@ -2,13 +2,14 @@ export type Next = (p: unknown) => Promise<unknown>;
 
 export type Middleware = (params: unknown, next: Next) => Promise<unknown>;
 
-export type Composed = (params?: unknown, next?: Next) => Promise<unknown>;
+export type Composed = (params?: unknown) => Promise<unknown>;
 
-export const compose = (middlewares: Array<Middleware>): Composed =>
-  middlewares.reduce(
-    (prev, current) => (params, next = p => Promise.resolve(p)) =>
-      prev(params, params2 => current(params2, next))
-  ) as Composed;
+export const compose = (middlewares: Array<Middleware>): Composed => <T>(
+  initialData: T
+) =>
+  middlewares.reduce((prev, current) => (params, next) =>
+    prev(params, params2 => current(params2, next))
+  )(initialData, p => Promise.resolve(p));
 
 // compose([
 //   async (prev, next) => {

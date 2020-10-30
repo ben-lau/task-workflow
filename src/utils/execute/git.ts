@@ -1,13 +1,32 @@
 import { EnumExecuteLevel, execute } from '.';
+import { PromisifySpawnLib } from './promisify-spawn';
 
-export const git = (...args: Array<string>) => {
-  return execute('git', args, { level: EnumExecuteLevel.Fatal });
+interface GitMethods {
+  (...args: Array<string>): Promise<PromisifySpawnLib.Result>;
+}
+
+const cmdGit = 'git';
+
+const RegLastNewLine = /(\n\r|\n|\r)$/;
+
+const NoNewLine = (gitMethod: GitMethods): GitMethods => async (
+  ...args: Array<string>
+) => {
+  const { message, code } = await gitMethod(...args);
+  return {
+    message: message.replace(RegLastNewLine, ''),
+    code,
+  };
 };
 
-export const gitWithoutBreak = (...args: Array<string>) => {
-  return execute('git', args, { level: EnumExecuteLevel.Warn });
-};
+export const git = NoNewLine((...args: Array<string>) =>
+  execute(cmdGit, args, { level: EnumExecuteLevel.Fatal })
+);
 
-export const gitInSilent = (...args: Array<string>) => {
-  return execute('git', args, { level: EnumExecuteLevel.None });
-};
+export const gitWithoutBreak = NoNewLine((...args: Array<string>) =>
+  execute(cmdGit, args, { level: EnumExecuteLevel.Warn })
+);
+
+export const gitInSilent = NoNewLine((...args: Array<string>) =>
+  execute(cmdGit, args, { level: EnumExecuteLevel.None })
+);
