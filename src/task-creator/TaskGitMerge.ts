@@ -3,7 +3,7 @@ import { gitCheckout, gitMerge, gitPush } from '../actions/git';
 import { store } from '../contexts/store';
 
 export class TaskGitMerge extends TaskCreator {
-  taskName = '合并代码';
+  name = '合并代码';
 
   async run() {
     const targetBranch = store.getData('targetBranch');

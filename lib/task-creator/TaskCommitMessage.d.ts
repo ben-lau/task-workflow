@@ -1,5 +1,5 @@
 import { TaskCreator } from '.';
 export declare class TaskCommitMessage extends TaskCreator {
-    taskName: string;
+    name: string;
     run(): Promise<void>;
 }

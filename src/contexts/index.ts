@@ -1,4 +1,4 @@
-export class Context<T> {
+export class Context<T extends Record<string, any>> {
   readonly env = {
     isCi: process.env.CI === 'true',
   };

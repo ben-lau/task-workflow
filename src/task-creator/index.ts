@@ -5,7 +5,7 @@ interface ILifeHooks {
 }
 
 export class TaskCreator implements ILifeHooks {
-  taskName = '默认任务';
+  name = '默认任务';
 
   protected state = {};
 

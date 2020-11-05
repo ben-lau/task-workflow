@@ -3,7 +3,7 @@ import { createMergeRequest } from '../actions/createMergeRequest';
 import { store } from '../contexts/store';
 
 export class TaskMergeRequest extends TaskCreator {
-  taskName = '提交merge request';
+  name = '提交merge request';
 
   async run() {
     createMergeRequest({

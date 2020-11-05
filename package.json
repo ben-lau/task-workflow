@@ -43,7 +43,6 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "axios": "^0.20.0",
     "chalk": "^4.1.0",
     "commander": "^6.1.0",
     "cross-spawn": "^7.0.3",

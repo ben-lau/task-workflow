@@ -1,5 +1,5 @@
 import { TaskCreator } from '.';
 export declare class TaskMergeRequest extends TaskCreator {
-    taskName: string;
+    name: string;
     run(): Promise<void>;
 }

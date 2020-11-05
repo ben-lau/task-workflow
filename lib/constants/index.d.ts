@@ -17,7 +17,7 @@ export declare namespace Environment {
     const FILE_USER_ACCOUNT: string;
 }
 export declare namespace Commit {
-    export enum EnumTypes {
+    export const enum EnumTypes {
         feat = "feat",
         fix = "fix",
         build = "build",

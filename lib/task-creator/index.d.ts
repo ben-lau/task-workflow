@@ -4,7 +4,7 @@ interface ILifeHooks {
     onDone?(_nextTaskResult: any): Promise<any>;
 }
 export declare class TaskCreator implements ILifeHooks {
-    taskName: string;
+    name: string;
     protected state: {};
     onStart(): Promise<boolean>;
     /**

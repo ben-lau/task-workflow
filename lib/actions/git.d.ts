@@ -37,3 +37,7 @@ export declare const getToBePushed: () => Promise<string>;
  * 有冲突会询问是否解决完毕，如果不继续则返回false，如果继续则递归。
  */
 export declare const waitForDealWithConflict: () => Promise<boolean>;
+/**
+ * 获取远程url
+ */
+export declare const getRemoteUrl: () => Promise<string>;

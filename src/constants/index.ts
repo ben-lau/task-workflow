@@ -23,7 +23,7 @@ export namespace Environment {
 }
 
 export namespace Commit {
-  export enum EnumTypes {
+  export const enum EnumTypes {
     feat = 'feat',
     fix = 'fix',
     build = 'build',

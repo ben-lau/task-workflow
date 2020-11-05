@@ -13,15 +13,15 @@ export class Scheduler {
       // 打印空行
       tips.log('');
 
-      tips.log(`=====${taskIndex}、开始【${task.taskName}】=====`);
+      tips.log(`=====${taskIndex}、开始【${task.name}】=====`);
 
       const shouldStart = await task.callHook('onStart');
 
       if (shouldStart) {
         result = await task.callHook('run', prev);
-        tips.log(`=====${taskIndex}、【${task.taskName}】完成=====`);
+        tips.log(`=====${taskIndex}、【${task.name}】完成=====`);
       } else {
-        tips.log(`=====${taskIndex}、【${task.taskName}】被跳过=====`);
+        tips.log(`=====${taskIndex}、【${task.name}】被跳过=====`);
       }
 
       return await task.callHook('onDone', await next(result));

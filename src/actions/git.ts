@@ -137,7 +137,6 @@ export const getToBePushed = async () => {
   const { message } = await git('cherry', '-v');
   return message;
 };
-// git rev-list --left-right test...refs/remotes/origin/test
 
 /**
  * 等待冲突处理
@@ -159,4 +158,12 @@ export const waitForDealWithConflict = async (): Promise<boolean> => {
   } else {
     return true;
   }
+};
+
+/**
+ * 获取远程url
+ */
+export const getRemoteUrl = async () => {
+  const { message } = await git('remote', 'get-url', '--push', 'origin');
+  return message;
 };
