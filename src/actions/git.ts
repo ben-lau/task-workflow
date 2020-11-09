@@ -104,7 +104,6 @@ export const gitMerge = async (targetBranch: string) => {
       await gitCommit(`【${Commit.EnumTypes.conflict}】合并冲突`);
     } else {
       tips.error('发现冲突，请解决后再提交');
-      return;
     }
   }
 };
