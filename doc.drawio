@@ -1,167 +1,209 @@
-<mxfile host="65bd71144e" modified="2020-11-09T06:22:45.439Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.0 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" version="13.6.5" etag="Wu41QaebGg11mYq9WtVm">
+<mxfile host="65bd71144e" modified="2020-11-10T06:37:25.866Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.0 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="FjD9UM2clibyRMBJDUPd" version="13.6.5">
     <diagram id="Ws8lJVpxHKiwdylPZabZ" name="Page-1">
-        <mxGraphModel dx="1766" dy="942" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1738" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+                <mxCell id="64" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="2" target="63" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="&lt;font style=&quot;font-size: 14px&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;to-self&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="2" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;to-self&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="-120" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="3" target="4">
+                <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="3" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="-120" y="130" width="120" height="60" as="geometry"/>
+                <mxCell id="3" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-120" y="260" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="-120" y="230" width="120" height="60" as="geometry"/>
+                <mxCell id="4" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-120" y="360" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="7" target="8">
+                <mxCell id="67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="7" target="66" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="&lt;font style=&quot;font-size: 14px&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;to-test&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="7" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;to-test&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="50" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="8" target="9">
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="8" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="50" y="130" width="120" height="60" as="geometry"/>
+                <mxCell id="8" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="260" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="9" target="11">
+                <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="9" target="11" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="50" y="230" width="120" height="60" as="geometry"/>
+                <mxCell id="9" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="360" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="拉取、合并分支、提交" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="50" y="420" width="120" height="60" as="geometry"/>
+                <mxCell id="10" value="拉取、合并分支、提交" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="550" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="11" target="10">
+                <mxCell id="16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="11" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="切换分支test" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="50" y="320" width="120" height="60" as="geometry"/>
+                <mxCell id="11" value="切换分支test" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="450" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="18" target="28">
+                <mxCell id="70" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="18" target="69" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="&lt;font style=&quot;font-size: 14px&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;to-test-deploy&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="18" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;to-test-deploy&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="350" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="20" target="22">
+                <mxCell id="73" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="20" target="72" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="&lt;font style=&quot;font-size: 14px&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;to-master&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="20" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;to-master&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="650" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="22" target="24">
+                <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="22" target="24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="650" y="130" width="120" height="60" as="geometry"/>
+                <mxCell id="22" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="240" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="24" target="27">
+                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="24" target="27" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="650" y="230" width="120" height="60" as="geometry"/>
+                <mxCell id="24" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="340" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="创建mr，从feature到master" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="650" y="320" width="120" height="60" as="geometry"/>
+                <mxCell id="27" value="创建mr，从feature到master" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="430" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="28" target="30">
+                <mxCell id="33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="28" target="30" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="28" target="31">
+                <mxCell id="34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="28" target="31" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" value="是否ci环境" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="350" y="130" width="120" height="50" as="geometry"/>
+                <mxCell id="28" value="是否ci环境" style="rhombus;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="220" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="30" target="35">
+                <mxCell id="38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="30" target="35" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="获取上次test提交信息" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="220" y="190" width="120" height="60" as="geometry"/>
+                <mxCell id="30" value="获取上次test提交信息" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="215" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="31" target="35">
+                <mxCell id="37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="31" target="35" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="480" y="200" width="120" height="60" as="geometry"/>
+                <mxCell id="31" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="485" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="35" target="40">
+                <mxCell id="41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="35" target="40" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="拉取test-deploy到临时目录" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="335" y="300" width="150" height="60" as="geometry"/>
+                <mxCell id="35" value="拉取test-deploy到临时目录&lt;br&gt;git clone -b" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="335" y="390" width="150" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="40" target="42">
+                <mxCell id="45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="40" target="42" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="编译构建打包" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="350" y="400" width="120" height="60" as="geometry"/>
+                <mxCell id="40" value="编译构建打包" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="490" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="42" target="43">
+                <mxCell id="79" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="42" target="78" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" value="复制编译产物到临时目录" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="350" y="500" width="120" height="60" as="geometry"/>
+                <mxCell id="42" value="复制编译产物到临时目录" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="590" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="350" y="600" width="120" height="60" as="geometry"/>
+                <mxCell id="43" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="790" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="47" target="50">
+                <mxCell id="76" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="47" target="75" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="&lt;font style=&quot;font-size: 14px&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;b&gt;to-master-deploy&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="47" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;to-master-deploy&lt;br&gt;&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="950" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="50" target="52">
+                <mxCell id="48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="50" target="52" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="50" target="54">
+                <mxCell id="49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="50" target="54" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="是否ci环境" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="950" y="130" width="120" height="50" as="geometry"/>
+                <mxCell id="50" value="是否ci环境" style="rhombus;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="220" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="52" target="56">
+                <mxCell id="51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="52" target="56" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="获取上次master提交信息" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="820" y="190" width="120" height="60" as="geometry"/>
+                <mxCell id="52" value="获取上次master提交信息" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="815" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="54" target="56">
+                <mxCell id="53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="54" target="56" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="1080" y="200" width="120" height="60" as="geometry"/>
+                <mxCell id="54" value="填写提交内容" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1085" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="56" target="58">
+                <mxCell id="55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="56" target="58" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="拉取master-deploy到临时目录" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="935" y="300" width="150" height="60" as="geometry"/>
+                <mxCell id="56" value="拉取master-deploy到临时目录" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="935" y="390" width="150" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="58" target="60">
+                <mxCell id="57" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="58" target="60" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="58" value="编译构建打包" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="950" y="400" width="120" height="60" as="geometry"/>
+                <mxCell id="58" value="编译构建打包" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="490" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="60" target="61">
+                <mxCell id="83" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="60" target="82" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="复制编译产物到临时目录" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="950" y="500" width="120" height="60" as="geometry"/>
+                <mxCell id="60" value="复制编译产物到临时目录" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="590" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="950" y="600" width="120" height="60" as="geometry"/>
+                <mxCell id="61" value="提交、提取、推送" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="790" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="63" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="在非deploy分支" style="rhombus;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-130" y="140" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="66" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="在非test、master和deploy分支" style="rhombus;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="42.5" y="140" width="135" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="69" target="28" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="在test分支" style="rhombus;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="335" y="130" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="72" target="22" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="在非test、master和deploy分支" style="rhombus;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="642.5" y="130" width="135" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="75" target="50" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="在master分支" style="rhombus;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="935" y="130" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="78" target="43" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="进入临时目录" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="690" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" source="82" target="61" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="进入临时目录" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;fontFamily=Comic Sans MS;verticalAlign=middle;horizontal=1;labelBorderColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="690" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
