@@ -1,10 +1,12 @@
-interface ILifeHooks {
+import { arguments } from 'commander';
+
+interface ILifeHooks<P = any, N = any> {
   onStart?(): Promise<boolean>;
-  run?(_prevTaskParams: any): Promise<any>;
-  onDone?(_nextTaskResult: any): Promise<any>;
+  run?(_prevTaskParams: P): Promise<any>;
+  onDone?(_nextTaskResult: N): Promise<any>;
 }
 
-export class TaskCreator implements ILifeHooks {
+export class TaskCreator<P = any, N = any> implements ILifeHooks<P, N> {
   name = '默认任务';
 
   protected state = {};
@@ -16,22 +18,20 @@ export class TaskCreator implements ILifeHooks {
   /**
    * @description run的参数能获取上一个任务run的返回
    */
-  async run(_prevTaskParams: any): Promise<any> {
+  async run(_prevTaskParams: P): Promise<any> {
     return;
   }
 
   /**
    * @description onDone的参数是下一个任务onDone的返回
    */
-  async onDone(_nextTaskResult: any): Promise<any> {
+  async onDone(_nextTaskResult: N): Promise<any> {
     return;
   }
-
-  callHook<H extends keyof ILifeHooks>(
-    hook: H,
-    ...params: Parameters<this[H]>
-  ): ReturnType<this[H]> {
-    // TODO: 这里的类型推断有问题
-    return (this[hook] as any)(...params);
-  }
 }
+
+export const callHook = <H extends keyof ILifeHooks, TH extends TaskCreator[H]>(
+  task: TaskCreator,
+  hook: H,
+  ...params: Parameters<TH>
+): ReturnType<TH> => (task[hook] as any)(...params);

@@ -13,9 +13,8 @@ const checkConflict = (message: string) => RegConflictMessage.test(message);
 
 /**
  * 提交操作
- * @param message 提交信息
  */
-export const gitCommit = async (message: string) => {
+export const gitCommit = async ({ message }: { message: string }) => {
   tips.showLoading('检查工作区');
   const { message: status } = await git('status', '-z', '-u');
 
@@ -35,12 +34,12 @@ export const gitCommit = async (message: string) => {
 export const gitPull = async () => {
   const currentBranch = await getCurrentBranchName();
   tips.showLoading(`拉取远程【${currentBranch}】`);
-  const { code, message } = await gitInSilent('pull');
+  const { code, message } = await gitInSilent('pull', '--rebase');
   tips.hideLoading();
 
   if (code !== CODE_SUCCESS && checkConflict(message)) {
     if (await waitForDealWithConflict()) {
-      await gitCommit(`【${Commit.EnumTypes.conflict}】合并冲突`);
+      await gitCommit({ message: `【${Commit.Types.conflict}】合并冲突` });
     } else {
       tips.error('发现冲突，请解决后再提交');
       return;
@@ -62,46 +61,46 @@ export const gitPush = async () => {
 
 /**
  * 切换分支
- * @param targetBranch 目标分支
  */
-export const gitCheckout = async (targetBranch: string) => {
+export const gitCheckout = async ({ branch }: { branch: string }) => {
   tips.showLoading('检查工作区');
   const { message } = await git('status', '-z', '-u');
   tips.hideLoading();
 
   if (
     message &&
-    !(await inquireContinue('工作区尚有未提交更改，是否切换分支？'))
+    !(await inquireContinue({
+      message: '工作区尚有未提交更改，是否切换分支？',
+    }))
   ) {
     tips.error('已取消');
     return Promise.reject('已取消');
   }
 
-  tips.showLoading(`切换至【${targetBranch}】`);
-  await git('checkout', targetBranch);
+  tips.showLoading(`切换至【${branch}】`);
+  await git('checkout', branch);
   await gitPull();
   tips.hideLoading();
 };
 
 /**
  * 合并操作
- * @param targetBranch
  */
-export const gitMerge = async (targetBranch: string) => {
-  tips.showLoading(`正在合并【${targetBranch}】`);
+export const gitMerge = async ({ branch }: { branch: string }) => {
+  tips.showLoading(`正在合并【${branch}】`);
   const currentBranch = await getCurrentBranchName();
   const { code, message } = await gitInSilent(
     'merge',
-    targetBranch,
+    branch,
     '--no-ff',
     '-m',
-    `【${Commit.EnumTypes.merge}】Merge branch '${targetBranch}' into '${currentBranch}'`
+    `【${Commit.Types.merge}】Merge branch '${branch}' into '${currentBranch}'`
   );
   tips.hideLoading();
 
   if (code !== CODE_SUCCESS && checkConflict(message)) {
     if (await waitForDealWithConflict()) {
-      await gitCommit(`【${Commit.EnumTypes.conflict}】合并冲突`);
+      await gitCommit({ message: `【${Commit.Types.conflict}】合并冲突` });
     } else {
       tips.error('发现冲突，请解决后再提交');
     }
@@ -118,13 +117,12 @@ export const getCurrentBranchName = async () => {
 
 /**
  * 获取分支上游分支名
- * @param branchName
  */
-export const getUpstreamBranchName = async (branchName: string) => {
+export const getUpstreamBranchName = async ({ branch }: { branch: string }) => {
   const { message } = await git(
     'rev-parse',
     '--symbolic-full-name',
-    `${branchName}@{u}`
+    `${branch}@{u}`
   );
   return message;
 };
@@ -149,9 +147,9 @@ export const waitForDealWithConflict = async (): Promise<boolean> => {
     '--check'
   );
   if (code !== CODE_SUCCESS) {
-    return (await inquireContinue(
-      `还有${getLineCount(message)}处冲突未解决，请先解决，是否继续？`
-    ))
+    return (await inquireContinue({
+      message: `还有${getLineCount(message)}处冲突未解决，请先解决，是否继续？`,
+    }))
       ? await waitForDealWithConflict()
       : false;
   } else {
@@ -164,5 +162,14 @@ export const waitForDealWithConflict = async (): Promise<boolean> => {
  */
 export const getRemoteUrl = async () => {
   const { message } = await git('remote', 'get-url', '--push', 'origin');
+  return message;
+};
+
+/**
+ * 获取分支上一次提交记录
+ */
+export const getLastCommit = async ({ branch }: { branch: string }) => {
+  const remoteBranchName = await getUpstreamBranchName({ branch: branch });
+  const { message } = await git('log', remoteBranchName, '-1', '--format=%s');
   return message;
 };

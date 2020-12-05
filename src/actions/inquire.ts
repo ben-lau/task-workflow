@@ -2,17 +2,19 @@ import inquirer from 'inquirer';
 import { Commit } from '../constants';
 
 interface IAnswerCommitDetails {
-  type: Commit.EnumTypes;
+  type: Commit.Types;
   message: string;
 }
 
 export const inquireCommitDetails = async (): Promise<string> => {
+  const choices = Object.values(Commit.typesMap);
   const { type, message } = await inquirer.prompt<IAnswerCommitDetails>([
     {
       type: 'list',
       name: 'type',
       message: '选择提交类型',
-      choices: Object.values(Commit.typesMap),
+      choices,
+      pageSize: choices.length,
     },
     {
       type: 'input',
@@ -31,7 +33,7 @@ export const inquireCommitDetails = async (): Promise<string> => {
       },
     },
   ]);
-  return `[${type}]: ${message}`;
+  return `${type}: ${message}`;
 };
 
 interface IAnswerContinue {
@@ -42,7 +44,7 @@ interface IAnswerContinue {
  * 询问是否继续
  * @param message 提示信息
  */
-export const inquireContinue = async (message?: string) => {
+export const inquireContinue = async ({ message }: { message?: string }) => {
   const { confirm } = await inquirer.prompt<IAnswerContinue>([
     {
       type: 'confirm',

@@ -23,7 +23,7 @@ export namespace Environment {
 }
 
 export namespace Commit {
-  export const enum EnumTypes {
+  export const enum Types {
     feat = 'feat',
     fix = 'fix',
     build = 'build',
@@ -35,46 +35,46 @@ export namespace Commit {
     merge = 'merge',
   }
 
-  interface TypesMap {
+  interface ITypesMap {
     [p: string]: { name: string; value: string };
   }
 
-  export const typesMap: TypesMap = {
-    [EnumTypes.feat]: {
+  export const typesMap: ITypesMap = {
+    [Types.feat]: {
       name: '新功能',
-      value: EnumTypes.feat,
+      value: Types.feat,
     },
-    [EnumTypes.fix]: {
+    [Types.fix]: {
       name: '修复',
-      value: EnumTypes.fix,
+      value: Types.fix,
     },
-    [EnumTypes.build]: {
+    [Types.build]: {
       name: '构建打包',
-      value: EnumTypes.build,
+      value: Types.build,
     },
-    [EnumTypes.style]: {
+    [Types.style]: {
       name: '代码样式',
-      value: EnumTypes.style,
+      value: Types.style,
     },
-    [EnumTypes.refactor]: {
+    [Types.refactor]: {
       name: '重构（不新增功能也不是修改bug）',
-      value: EnumTypes.refactor,
+      value: Types.refactor,
     },
-    [EnumTypes.test]: {
+    [Types.test]: {
       name: '添加测试',
-      value: EnumTypes.test,
+      value: Types.test,
     },
-    [EnumTypes.chore]: {
+    [Types.chore]: {
       name: '流程或工具更改',
-      value: EnumTypes.chore,
+      value: Types.chore,
     },
-    [EnumTypes.conflict]: {
+    [Types.conflict]: {
       name: '冲突解决',
-      value: EnumTypes.conflict,
+      value: Types.conflict,
     },
-    [EnumTypes.merge]: {
+    [Types.merge]: {
       name: '代码合并',
-      value: EnumTypes.merge,
+      value: Types.merge,
     },
   };
 }

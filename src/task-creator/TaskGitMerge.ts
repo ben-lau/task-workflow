@@ -9,10 +9,10 @@ export class TaskGitMerge extends TaskCreator {
     const targetBranch = store.getData('targetBranch');
     const sourceBranch = store.getData('sourceBranch');
 
-    await gitCheckout(sourceBranch);
-    await gitCheckout(targetBranch);
+    await gitCheckout({ branch: sourceBranch });
+    await gitCheckout({ branch: targetBranch });
 
-    await gitMerge(sourceBranch);
+    await gitMerge({ branch: sourceBranch });
 
     await gitPush();
   }
