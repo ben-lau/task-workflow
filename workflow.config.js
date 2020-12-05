@@ -1,17 +1,11 @@
 module.exports = {
   'to-self': {
     description: '',
-    env: {
-      currentBranch: await getCurrentBranch(),
-    },
     validate: () => this.env.currentBranch !== 'deploy',
     tasks: [inquirerCommitMessage(), gitCommit(), gitPush()],
   },
   'to-test': {
     description: '',
-    env: {
-      currentBranch: await getCurrentBranch(),
-    },
     validate: async () =>
       !['test', 'master', 'deploy'].includes(this.env.currentBranch),
     tasks: [
@@ -23,10 +17,6 @@ module.exports = {
   },
   'to-test-deploy': {
     description: '',
-    env: {
-      currentBranch: await getCurrentBranch(),
-      dir: './.deploy',
-    },
     validate() {
       return !['test', 'master', 'deploy'].includes(this.env.currentBranch);
     },
