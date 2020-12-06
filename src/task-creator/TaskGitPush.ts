@@ -6,7 +6,7 @@ export class TaskGitPush extends TaskCreator {
   name = '提交代码到远程';
 
   async run() {
-    await gitCommit(store.getData('commitMessage'));
+    await gitCommit({ message: store.getData('commitMessage') });
     await gitPush();
   }
 }

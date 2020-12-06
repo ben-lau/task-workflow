@@ -17,7 +17,7 @@ export declare namespace Environment {
     const FILE_USER_ACCOUNT: string;
 }
 export declare namespace Commit {
-    export const enum EnumTypes {
+    export const enum Types {
         feat = "feat",
         fix = "fix",
         build = "build",
@@ -28,12 +28,12 @@ export declare namespace Commit {
         conflict = "conflict",
         merge = "merge"
     }
-    interface TypesMap {
+    interface ITypesMap {
         [p: string]: {
             name: string;
             value: string;
         };
     }
-    export const typesMap: TypesMap;
+    export const typesMap: ITypesMap;
     export {};
 }

@@ -10,7 +10,7 @@ export class TaskMergeRequest extends TaskCreator {
       title: store.getData('commitMessage'),
       targetBranch: store.getData('targetBranch'),
       sourceBranch: store.getData('sourceBranch'),
-      projectId: store.getData('projectId'),
+      projectUrl: store.getData('projectId'),
     });
   }
 }

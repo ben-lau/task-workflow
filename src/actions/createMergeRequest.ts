@@ -1,29 +1,52 @@
 import open from 'open';
+import { getRemoteUrl } from './git';
 
-interface IMergeRequestParams {
-  projectId: string;
+interface IMergeRequestQuery {
   sourceBranch: string;
   targetBranch: string;
   title: string;
 }
 
-const myId = '1042';
+interface IParamsGetMergeRequestAddress extends IMergeRequestQuery {
+  projectUrl: string;
+}
 
-const REG_GITLAB_PROJECT = /(?<=(git@code\.inke\.cn:|https:\/\/code\.inke\.cn\/)).*(?=\.git)/;
+interface IParamsCreateMergeRequest extends IMergeRequestQuery {
+  projectUrl?: string;
+}
+
+const REG_GITLAB_PROJECT = /(?<=(git@|https:\/\/)).*(?=\.git)/;
 
 const getMergeRequestAddress = ({
-  projectId,
+  projectUrl,
   sourceBranch,
   targetBranch,
   title,
-}: IMergeRequestParams) =>
-  `https://code.inke.cn/${projectId}/merge_requests/new?merge_request[source_branch]=${sourceBranch}&merge_request[target_branch]=${targetBranch}&merge_request[title]=${title}&merge_request[assignee_id]=${myId}`;
+}: IParamsGetMergeRequestAddress) =>
+  `https://${projectUrl}/merge_requests/new?merge_request[source_branch]=${sourceBranch}&merge_request[target_branch]=${targetBranch}&merge_request[title]=${title}`;
+
+/**
+ *
+ * @param repo ssh类型的git repo
+ * @returns 仓库地址
+ */
+const getProjectUrlFromRepo = (repo: string) =>
+  (repo.match(REG_GITLAB_PROJECT) || [''])[0].replace(/\:/, '/');
 
 /**
  * @todo 申请机器人账号，使用机器人账号创建mr
  */
-export const createMergeRequest = (mrParams: IMergeRequestParams) =>
-  open(getMergeRequestAddress(mrParams));
-
-export const getProjectIdFromUrl = (url: string) =>
-  (url.match(REG_GITLAB_PROJECT) || [])[0];
+export const createMergeRequest = async ({
+  projectUrl,
+  sourceBranch,
+  targetBranch,
+  title,
+}: IParamsCreateMergeRequest) =>
+  open(
+    getMergeRequestAddress({
+      projectUrl: projectUrl || getProjectUrlFromRepo(await getRemoteUrl()),
+      sourceBranch,
+      targetBranch,
+      title,
+    })
+  );

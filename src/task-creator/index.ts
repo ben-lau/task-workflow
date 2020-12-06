@@ -1,5 +1,3 @@
-import { arguments } from 'commander';
-
 interface ILifeHooks<P = any, N = any> {
   onStart?(): Promise<boolean>;
   run?(_prevTaskParams: P): Promise<any>;
