@@ -4,6 +4,10 @@ export type Middleware = (params: unknown, next: Next) => Promise<unknown>;
 
 export type Composed = (params?: unknown) => Promise<unknown>;
 
+/**
+ * 将中间层函数组合到一起
+ * @param middlewares 中间层函数
+ */
 export const compose = (middlewares: Array<Middleware>): Composed => <T>(
   initialData: T
 ) =>

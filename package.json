@@ -8,6 +8,7 @@
     "task-start": "bin/task-start"
   },
   "files": [
+    "bin/",
     "lib/"
   ],
   "homepage": "https://github.com/ben-lau/task-workflow",
@@ -17,10 +18,12 @@
   "keywords": [
     "task",
     "process",
+    "workflow",
     "nodejs",
     "compose",
     "task-process",
     "task workflow",
+    "task-workflow",
     "任务流程",
     "流程化任务"
   ],
@@ -49,14 +52,14 @@
     "inquirer": "^7.3.3",
     "open": "^7.3.0",
     "ora": "^5.1.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.1.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
     "@types/cross-spawn": "^6.0.2",
     "@types/inquirer": "^7.3.1",
-    "@types/node": "^14.11.8",
+    "@types/node": "^14.14.10",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.9.0",
     "eslint": "^7.11.0",
     "husky": "^4.3.0"
   }

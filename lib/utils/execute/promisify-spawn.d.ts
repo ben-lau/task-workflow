@@ -1,7 +1,7 @@
+/// <reference types="node" />
 /**
  * @description 为什么不用shelljs?因为他底层实现为exec，有固定缓冲区，而且nodejs的exec有bug（错误码不保证为数字）
  */
-/// <reference types="node" />
 import { SpawnOptions } from 'child_process';
 export declare namespace PromisifySpawnLib {
     interface Options extends SpawnOptions {

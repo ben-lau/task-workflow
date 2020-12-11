@@ -1,5 +1,5 @@
 import { TaskCreator } from '.';
 export declare class TaskGitPush extends TaskCreator {
     name: string;
-    run(): Promise<void>;
+    run(message: string): Promise<void>;
 }

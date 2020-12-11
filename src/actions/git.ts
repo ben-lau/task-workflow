@@ -78,7 +78,16 @@ export const gitCheckout = async ({ branch }: { branch: string }) => {
   }
 
   tips.showLoading(`切换至【${branch}】`);
-  await git('checkout', branch);
+  if (await getIsExistLocalBranch({ branch })) {
+    await git('checkout', branch);
+  } else {
+    await git(
+      'checkout',
+      branch,
+      '-b',
+      await getUpstreamBranchName({ branch })
+    );
+  }
   await gitPull();
   tips.hideLoading();
 };
@@ -111,20 +120,33 @@ export const gitMerge = async ({ branch }: { branch: string }) => {
  * 获取当前分支名
  */
 export const getCurrentBranchName = async () => {
+  // git branch --show-current
   const { message } = await git('name-rev', '--name-only', 'HEAD');
   return message;
+};
+
+/**
+ * 获取本地分支是否存在
+ */
+export const getIsExistLocalBranch = async ({ branch }: { branch: string }) => {
+  const { message } = await git('branch', '--list', `${branch}`);
+  return message.trim() === '';
 };
 
 /**
  * 获取分支上游分支名
  */
 export const getUpstreamBranchName = async ({ branch }: { branch: string }) => {
-  const { message } = await git(
-    'rev-parse',
-    '--symbolic-full-name',
-    `${branch}@{u}`
-  );
-  return message;
+  if (await getIsExistLocalBranch({ branch })) {
+    return `origin/${branch}`;
+  } else {
+    const { message } = await git(
+      'rev-parse',
+      '--symbolic-full-name',
+      `${branch}@{u}`
+    );
+    return message;
+  }
 };
 
 /**
@@ -169,7 +191,7 @@ export const getRemoteUrl = async () => {
  * 获取分支上一次提交记录
  */
 export const getLastCommit = async ({ branch }: { branch: string }) => {
-  const remoteBranchName = await getUpstreamBranchName({ branch: branch });
+  const remoteBranchName = await getUpstreamBranchName({ branch });
   const { message } = await git('log', remoteBranchName, '-1', '--format=%s');
   return message;
 };

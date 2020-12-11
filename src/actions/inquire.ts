@@ -6,6 +6,9 @@ interface IAnswerCommitDetails {
   message: string;
 }
 
+/**
+ * 询问提交信息文本
+ */
 export const inquireCommitDetails = async (): Promise<string> => {
   const choices = Object.values(Commit.typesMap);
   const { type, message } = await inquirer.prompt<IAnswerCommitDetails>([

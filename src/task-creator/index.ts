@@ -1,3 +1,5 @@
+import { TaskSymbol } from '../constants';
+
 interface ILifeHooks<P = any, N = any> {
   onStart?(): Promise<boolean>;
   run?(_prevTaskParams: P): Promise<any>;
@@ -5,6 +7,8 @@ interface ILifeHooks<P = any, N = any> {
 }
 
 export class TaskCreator<P = any, N = any> implements ILifeHooks<P, N> {
+  static __type__ = TaskSymbol.FunctionalTask;
+
   name = '默认任务';
 
   protected state = {};

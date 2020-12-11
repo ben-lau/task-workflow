@@ -1,5 +1,6 @@
 import { callHook, TaskCreator } from '../task-creator';
 import { compose, Middleware } from '../utils/compose';
+import { timer } from '../utils/timer';
 import { tips } from '../utils/tips';
 
 export class Scheduler {
@@ -18,8 +19,12 @@ export class Scheduler {
       const shouldStart = await callHook(task, 'onStart');
 
       if (shouldStart) {
+        timer.start(task.name);
         result = await callHook(task, 'run', prev);
-        tips.log(`=====${taskIndex}、【${task.name}】完成=====`);
+        const timeConsuming = timer.end(task.name);
+        tips.log(
+          `=====${taskIndex}、【${task.name}】完成，耗时${timeConsuming}ms=====`
+        );
       } else {
         tips.log(`=====${taskIndex}、【${task.name}】被跳过=====`);
       }

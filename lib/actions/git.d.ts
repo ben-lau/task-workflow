@@ -26,6 +26,12 @@ export declare const gitMerge: ({ branch }: {
  */
 export declare const getCurrentBranchName: () => Promise<string>;
 /**
+ * 获取本地分支是否存在
+ */
+export declare const getIsExistLocalBranch: ({ branch }: {
+    branch: string;
+}) => Promise<boolean>;
+/**
  * 获取分支上游分支名
  */
 export declare const getUpstreamBranchName: ({ branch }: {

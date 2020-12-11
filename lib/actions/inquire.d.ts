@@ -1,3 +1,6 @@
+/**
+ * 询问提交信息文本
+ */
 export declare const inquireCommitDetails: () => Promise<string>;
 /**
  * 询问是否继续
