@@ -34,7 +34,7 @@ export const gitCommit = async ({ message }: { message: string }) => {
 export const gitPull = async () => {
   const currentBranch = await getCurrentBranchName();
   tips.showLoading(`拉取远程【${currentBranch}】`);
-  const { code, message } = await gitInSilent('pull', '--rebase');
+  const { code, message } = await gitInSilent('pull');
   tips.hideLoading();
 
   if (code !== CODE_SUCCESS && checkConflict(message)) {
@@ -130,7 +130,7 @@ export const getCurrentBranchName = async () => {
  */
 export const getIsExistLocalBranch = async ({ branch }: { branch: string }) => {
   const { message } = await git('branch', '--list', `${branch}`);
-  return message.trim() === '';
+  return message.trim() !== '';
 };
 
 /**
@@ -138,14 +138,10 @@ export const getIsExistLocalBranch = async ({ branch }: { branch: string }) => {
  */
 export const getUpstreamBranchName = async ({ branch }: { branch: string }) => {
   if (await getIsExistLocalBranch({ branch })) {
-    return `origin/${branch}`;
-  } else {
-    const { message } = await git(
-      'rev-parse',
-      '--symbolic-full-name',
-      `${branch}@{u}`
-    );
+    const { message } = await git('rev-parse', '--abbrev-ref', `${branch}@{u}`);
     return message;
+  } else {
+    return `origin/${branch}`;
   }
 };
 

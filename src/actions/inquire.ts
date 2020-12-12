@@ -53,7 +53,7 @@ export const inquireContinue = async ({ message }: { message?: string }) => {
       type: 'confirm',
       name: 'confirm',
       message: message || '是否继续？',
-      default: false, // 默认是否了，免得手快快就点确定了
+      default: true,
     },
   ]);
   return confirm;
