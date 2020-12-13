@@ -7,7 +7,7 @@ interface ILifeHooks<P = any, N = any> {
 }
 
 export class TaskCreator<P = any, N = any> implements ILifeHooks<P, N> {
-  static __type__ = TaskSymbol.FunctionalTask;
+  static __type__ = TaskSymbol.ClassTask;
 
   name = '默认任务';
 

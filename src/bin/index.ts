@@ -2,12 +2,21 @@ import { Workflow } from '../workflow';
 import { program } from 'commander';
 import path from 'path';
 
-const main = async () => {
-  program.option('-f, --from <path>', '').parse(process.argv);
+interface ITaskStartParams {
+  from?: string;
+  workflowId?: string;
+}
+
+export const taskStart = async ({
+  from,
+  workflowId,
+}: ITaskStartParams = {}) => {
+  program.option('-f, --from <path>', '初始化文件路径').parse(process.argv);
 
   if (program.from) {
-    await import(path.join(process.cwd(), program.from));
+    await import(path.join(process.cwd(), from || program.from));
   }
+
   Workflow.maps.forEach((item, key) => {
     program
       .command(key)
@@ -16,8 +25,10 @@ const main = async () => {
         item.start();
       });
   });
-  program.parse(process.argv);
-  // console.log(Workflow.maps);
-};
 
-main();
+  if (workflowId && Workflow.maps.has(workflowId)) {
+    Workflow.maps.get(workflowId)?.start();
+  } else {
+    program.parse(process.argv);
+  }
+};

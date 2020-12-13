@@ -1,4 +1,4 @@
-import * as Actions from './../actions';
+import * as ActionsModules from './../actions';
 
 type AnyFunction = (...params: any) => any;
 
@@ -15,6 +15,20 @@ interface IFunctionalTask<T extends AnyFunction> {
   (lastParams?: any): ReturnType<T>;
 }
 
+type ActionsModulesType = typeof ActionsModules;
+
+type ActionsType = ActionsModulesType[keyof ActionsModulesType];
+
+type TaskFactoriesModules<
+  T extends Record<string, Record<string, AnyFunction>>
+> = {
+  [P in keyof T]: TaskFactoriesMap<T[P]>;
+};
+
+type TaskFactoriesMap<T extends Record<string, AnyFunction>> = {
+  [P in keyof T]: IFunctionalTaskFactory<T[P]>;
+};
+
 /**
  * 将任务方法包装成统一的延迟执行函数，支持传入原任务参数或者函数获取任务参数
  * @param task 任务方法
@@ -24,16 +38,19 @@ const createTaskFactory: IFunctionalTaskFactoryCreator = task => (
 ) => (p: any) =>
   task(...(typeof params[0] === 'function' ? params[0](p) : params));
 
-type ActionsType = typeof Actions;
-
-type TaskFactoriesMap<T extends Record<string, AnyFunction>> = {
-  [P in keyof T]: IFunctionalTaskFactory<T[P]>;
-};
-
-export const Tasks = Object.keys(Actions).reduce(
-  (previous, key) => ({
-    ...previous,
-    [key]: createTaskFactory(Actions[key as keyof ActionsType]),
-  }),
-  {} as TaskFactoriesMap<ActionsType>
+export const Tasks = Object.keys(ActionsModules).reduce(
+  (previousMap, modulesKey) => {
+    const module = ActionsModules[modulesKey as keyof ActionsModulesType];
+    return {
+      ...previousMap,
+      [modulesKey]: Object.keys(module).reduce(
+        (previous, key) => ({
+          ...previous,
+          [key]: createTaskFactory(module[key as keyof ActionsType]),
+        }),
+        {} as TaskFactoriesMap<ActionsType>
+      ),
+    };
+  },
+  {} as TaskFactoriesModules<ActionsModulesType>
 );

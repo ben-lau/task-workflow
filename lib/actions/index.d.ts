@@ -1,5 +1,5 @@
 export * from './mergeRequest';
 export * from './file';
 export * from './git';
-export * from './inquire';
-export * from './runCmd';
+export * from './askFor';
+export * from './shell';

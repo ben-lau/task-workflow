@@ -45,14 +45,15 @@ export class Workflow {
       tips.warn(`${this.name}验证失败，已终止`);
       return;
     } else {
+      tips.succeed(`开始【${this.description}】`);
       return compose(this.createTaskQueue())();
     }
   }
 
   createTaskQueue() {
-    const queue: Array<Middleware> = this.config.steps
+    return this.config.steps
       .filter(Boolean)
-      .map((item, index) => async (prev, next) => {
+      .map<Middleware>((item, index) => async (prev, next) => {
         let taskName = '未命名任务';
         let task: IFunctionalTask = () => void 0;
         if (typeof item !== 'function') {
@@ -76,6 +77,5 @@ export class Workflow {
 
         return await next(result);
       });
-    return queue;
   }
 }
