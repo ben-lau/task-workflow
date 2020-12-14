@@ -40,7 +40,7 @@ export namespace Git {
 
     if (code !== CODE_SUCCESS && checkConflict(message)) {
       if (await waitForDealWithConflict()) {
-        await commit({ message: `【${Commit.Types.conflict}】合并冲突` });
+        await commit({ message: `${Commit.Types.conflict}: 合并冲突` });
       } else {
         tips.error('发现冲突，请解决后再提交');
         return;
@@ -104,13 +104,15 @@ export namespace Git {
       branch,
       '--no-ff',
       '-m',
-      `【${Commit.Types.merge}】Merge branch '${branch}' into '${currentBranch}'`
+      `${Commit.Types.merge}: Merge branch '${branch}' into '${currentBranch}'`
     );
     tips.hideLoading();
 
     if (code !== CODE_SUCCESS && checkConflict(message)) {
       if (await waitForDealWithConflict()) {
-        await commit({ message: `【${Commit.Types.conflict}】合并冲突` });
+        await commit({
+          message: `${Commit.Types.merge}: Merge branch '${branch}' into '${currentBranch}'`,
+        });
       } else {
         tips.error('发现冲突，请解决后再提交');
       }
