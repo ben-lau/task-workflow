@@ -123,8 +123,8 @@ export namespace Git {
    * 获取当前分支名
    */
   export const getCurrentBranchName = async () => {
-    // git branch --show-current
-    const { message } = await git('name-rev', '--name-only', 'HEAD');
+    // git name-rev --name-only HEAD
+    const { message } = await git('branch', '--show-current');
     return message;
   };
 
