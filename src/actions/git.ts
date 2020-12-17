@@ -140,8 +140,9 @@ export namespace Git {
    * 获取当前分支名
    */
   export const getCurrentBranchName = async () => {
-    // git name-rev --name-only HEAD
-    const { message } = await git('branch', '--show-current');
+    // git branch --show-current 这个要求版本高点
+    // git symbolic-ref --short -q HEAD
+    const { message } = await git('symbolic-ref', '--short', '-q', 'HEAD');
     return message;
   };
 
