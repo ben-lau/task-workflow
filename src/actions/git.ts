@@ -142,7 +142,8 @@ export namespace Git {
   export const getCurrentBranchName = async () => {
     // git branch --show-current 这个要求版本高点
     // git symbolic-ref --short -q HEAD
-    const { message } = await git('symbolic-ref', '--short', '-q', 'HEAD');
+    // git rev-parse --abbrev-ref HEAD
+    const { message } = await git('rev-parse', '--abbrev-ref', 'HEAD');
     return message;
   };
 
