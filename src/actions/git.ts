@@ -131,8 +131,9 @@ export namespace Git {
     branch?: string;
     path?: string;
   }) => {
-    tips.showLoading('正在克隆');
+    tips.showLoading(`克隆【${url}】`);
     await git('clone', url, '-b', branch, path ?? '');
+    tips.succeed(`克隆【${url}】`);
   };
 
   /**
