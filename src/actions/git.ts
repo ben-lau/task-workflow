@@ -120,6 +120,22 @@ export namespace Git {
   };
 
   /**
+   * 克隆仓库
+   */
+  export const clone = async ({
+    url,
+    branch = 'master',
+    path,
+  }: {
+    url: string;
+    branch?: string;
+    path?: string;
+  }) => {
+    tips.showLoading('正在克隆');
+    await git('clone', url, '-b', branch, path ?? '');
+  };
+
+  /**
    * 获取当前分支名
    */
   export const getCurrentBranchName = async () => {

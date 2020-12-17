@@ -12,7 +12,7 @@ interface IFunctionalTaskFactory<T extends AnyFunction> {
 }
 
 interface IFunctionalTask<T extends AnyFunction> {
-  (lastParams?: any): ReturnType<T>;
+  (lastParams?: any): Promise<ReturnType<T>> | ReturnType<T>;
 }
 
 type ActionsModulesType = typeof ActionsModules;
@@ -35,8 +35,8 @@ type TaskFactoriesMap<T extends Record<string, AnyFunction>> = {
  */
 const createTaskFactory: IFunctionalTaskFactoryCreator = task => (
   ...params: any
-) => (p: any) =>
-  task(...(typeof params[0] === 'function' ? params[0](p) : params));
+) => async (p: any) =>
+  task(...(typeof params[0] === 'function' ? await params[0](p) : params));
 
 export const Tasks = Object.keys(ActionsModules).reduce(
   (previousMap, modulesKey) => {
