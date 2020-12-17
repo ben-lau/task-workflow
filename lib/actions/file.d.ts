@@ -14,7 +14,7 @@ export declare namespace File {
      */
     const entryDirectory: ({ dir }: {
         dir: string;
-    }) => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
+    }) => Promise<void>;
     /**
      * 确认文件夹存在（不存在则创建）
      * @param dir 文件夹路径
