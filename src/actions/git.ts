@@ -4,7 +4,6 @@ import { CODE_SUCCESS } from '../utils/execute/promisify-spawn';
 import { tips } from '../utils/tips';
 import { getLineCount } from '../utils/tools';
 import { AskFor } from './askFor';
-import { Shell } from './shell';
 
 // 冲突正则
 const RegConflictMessage = /CONFLICT/i;
@@ -143,10 +142,8 @@ export namespace Git {
   export const getCurrentBranchName = async () => {
     // git branch --show-current 这个要求版本高点
     // git symbolic-ref --short -q HEAD
-    const { stdout } = await Shell.run({
-      cmd: `git branch | awk  '$1 == "*"{print $2}'`,
-    });
-    return stdout;
+    const { message } = await git('symbolic-ref', '--short', '-q', 'HEAD');
+    return message;
   };
 
   /**

@@ -52,10 +52,11 @@ export const execute = async (
   try {
     return await promisifySpawn(command, argumentList, options);
   } catch (err) {
+    const cmd = `${command} ${argumentList.join(' ')}`;
     if (options.level === EnumExecuteLevel.Fatal) {
-      tips.error(getErrorMessageInExecute(err, command));
+      tips.error(getErrorMessageInExecute(err, cmd));
     } else if (options.level === EnumExecuteLevel.Warn) {
-      tips.warn(getErrorMessageInExecute(err, command));
+      tips.warn(getErrorMessageInExecute(err, cmd));
     }
     return err;
   }
