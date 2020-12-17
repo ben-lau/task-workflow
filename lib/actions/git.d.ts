@@ -23,6 +23,14 @@ export declare namespace Git {
         branch: string;
     }) => Promise<void>;
     /**
+     * 克隆仓库
+     */
+    const clone: ({ url, branch, path, }: {
+        url: string;
+        branch?: string | undefined;
+        path?: string | undefined;
+    }) => Promise<void>;
+    /**
      * 获取当前分支名
      */
     const getCurrentBranchName: () => Promise<string>;

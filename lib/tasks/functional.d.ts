@@ -5,7 +5,7 @@ interface IFunctionalTaskFactory<T extends AnyFunction> {
     (params: (p?: any) => Parameters<T>): IFunctionalTask<T>;
 }
 interface IFunctionalTask<T extends AnyFunction> {
-    (lastParams?: any): ReturnType<T>;
+    (lastParams?: any): Promise<ReturnType<T>> | ReturnType<T>;
 }
 declare type TaskFactoriesModules<T extends Record<string, Record<string, AnyFunction>>> = {
     [P in keyof T]: TaskFactoriesMap<T[P]>;
