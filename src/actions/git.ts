@@ -13,6 +13,24 @@ const checkConflict = (message: string) => RegConflictMessage.test(message);
 
 export namespace Git {
   /**
+   * 配置git
+   */
+  export const config = async ({
+    name,
+    email,
+  }: {
+    name?: string;
+    email?: string;
+  }) => {
+    if (name) {
+      await git('config', 'user.name', `"${name}"`);
+    }
+    if (email) {
+      await git('config', 'user.email', `"${email}"`);
+    }
+  };
+
+  /**
    * 提交操作
    */
   export const commit = async ({ message }: { message: string }) => {

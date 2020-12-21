@@ -1,5 +1,12 @@
 export declare namespace Git {
     /**
+     * 配置git
+     */
+    const config: ({ name, email, }: {
+        name?: string | undefined;
+        email?: string | undefined;
+    }) => Promise<void>;
+    /**
      * 提交操作
      */
     const commit: ({ message }: {
