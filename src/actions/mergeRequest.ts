@@ -25,7 +25,11 @@ export namespace MergeRequest {
     targetBranch,
     title,
   }: IParamsGetAddress) =>
-    `https://${projectUrl}/merge_requests/new?merge_request[source_branch]=${sourceBranch}&merge_request[target_branch]=${targetBranch}&merge_request[title]=${title}`;
+    `https://${projectUrl}/merge_requests/new?${new URLSearchParams({
+      'merge_request[title]': title,
+      'merge_request[source_branch]': sourceBranch,
+      'merge_request[target_branch]': targetBranch,
+    }).toString()}`;
 
   /**
    *
@@ -45,7 +49,9 @@ export namespace MergeRequest {
     title,
   }: IParamsCreate) => {
     const addr = getMergeRequestAddress({
-      projectUrl: projectUrl || getProjectUrlFromRepo(await Git.getRemoteUrl()),
+      projectUrl: getProjectUrlFromRepo(
+        projectUrl || (await Git.getRemoteUrl())
+      ),
       sourceBranch,
       targetBranch,
       title,
