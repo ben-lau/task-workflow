@@ -70,7 +70,8 @@ taskStart({
   - `validate` **{ Function }** 工作流前置判断，返回为 true 才能开始，支持异步
   - `steps` **{ Array }** 流程，支持直接传任务函数、任务、配置
     - `name` **{ string }** 本次任务名
-    - `use` **{ Task | Function }** 本次任务函数
+    - `use` **{ Task | Function }** **（必填）** 本次任务函数
+    - `skip` **{ Function }** 判断步骤是否需要跳过，返回为 true 会被跳过，支持异步，默认返回 false
 
 ### 例子：
 
@@ -80,9 +81,13 @@ const { Workflow, Tasks } = require('./lib/index');
 
 new Workflow('to-self', {
   description: '提交到远程',
-  validate: async () =>
-    !['master', 'main'].includes(await Tasks.Git.getCurrentBranchName()()),
   steps: [
+    {
+      name: '构建',
+      skip: async () =>
+        !(await Tasks.AskFor.shouldContinue({ message: '是否需要构建？' })()),
+      use: Tasks.Shell.run({ cmd: 'npm run build' }),
+    },
     { name: '获取提交信息', use: Tasks.AskFor.commitMessage() },
     { name: '提交', use: Tasks.Git.commit(message => [{ message }]) },
     { name: '推送', use: Tasks.Git.push() },
