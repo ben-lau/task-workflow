@@ -210,7 +210,15 @@ export namespace Git {
    * 获取未推送远程的commit
    */
   export const getToBePushed = async () => {
-    const { message } = await git('cherry', '-v');
+    // const { message } = await git('cherry', '-v'); //只会打印自己的提交并没有合并
+    const branch = await getCurrentBranchName();
+    const remoteBranchName = await getUpstreamBranchName({ branch });
+    const { message } = await git(
+      'log',
+      branch,
+      `^${remoteBranchName}`,
+      '--oneline'
+    );
     return message;
   };
 
