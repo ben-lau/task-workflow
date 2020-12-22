@@ -68,7 +68,7 @@ taskStart({
 - `options` **{ object }** 工作流的配置
   - `description` **{ String }** 工作流名称、描述
   - `validate` **{ Function }** 工作流前置判断，返回为 true 才能开始，支持异步
-  - `steps` **{ Array }** 流程，支持直接传任务函数、任务、配置
+  - `steps` **{ Array<object | Function> }** 流程，支持直接传任务函数、任务、配置
     - `name` **{ string }** 本次任务名
     - `use` **{ Task | Function }** **（必填）** 本次任务函数
     - `skip` **{ Function }** 判断步骤是否需要跳过，返回为 true 会被跳过，支持异步，默认返回 false

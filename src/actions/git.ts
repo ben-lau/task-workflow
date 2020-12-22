@@ -198,6 +198,14 @@ export namespace Git {
   };
 
   /**
+   * 获取还在工作区的更改
+   */
+  export const getTobeCommit = async () => {
+    const { message } = await git('status', '-s');
+    return message;
+  };
+
+  /**
    * 获取未推送远程的commit
    */
   export const getToBePushed = async () => {

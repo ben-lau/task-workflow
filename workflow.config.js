@@ -11,6 +11,14 @@ new Workflow('to-self', {
     },
     { name: '获取提交信息', use: Tasks.AskFor.commitMessage() },
     { name: '提交', use: Tasks.Git.commit(message => [{ message }]) },
+    {
+      name: '打版本',
+      skip: async () =>
+        !(await Tasks.AskFor.shouldContinue({
+          message: '是否更新版本？',
+        })()),
+      use: Tasks.Shell.run({ cmd: 'npm run version:patch' }),
+    },
     { name: '推送', use: Tasks.Git.push() },
   ],
 });

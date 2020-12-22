@@ -54,6 +54,10 @@ export declare namespace Git {
         branch: string;
     }) => Promise<string>;
     /**
+     * 获取还在工作区的更改
+     */
+    const getTobeCommit: () => Promise<string>;
+    /**
      * 获取未推送远程的commit
      */
     const getToBePushed: () => Promise<string>;
