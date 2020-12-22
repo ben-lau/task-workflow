@@ -1,5 +1,7 @@
 const { Workflow, Tasks } = require('./lib/index');
 
+const On = '1';
+
 new Workflow('to-self', {
   description: '提交到远程',
   steps: [
@@ -17,19 +19,17 @@ new Workflow('to-self', {
         !(await Tasks.AskFor.shouldContinue({
           message: '是否更新版本？',
         })()),
-      use: () => {
-        process.env.patch = true;
-      },
+      use: () => (process.env.patch = On),
     },
     {
       name: '打版本',
-      skip: () => process.env.patch !== true,
+      skip: () => process.env.patch !== On,
       use: Tasks.Shell.run({ cmd: 'npm run version:patch' }),
     },
     { name: '推送', use: Tasks.Git.push() },
     {
       name: '发布到npm',
-      skip: () => process.env.patch !== true,
+      skip: () => process.env.patch !== On,
       use: Tasks.Shell.run({ cmd: 'npm publish' }),
     },
   ],
