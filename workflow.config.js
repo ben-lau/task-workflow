@@ -2,6 +2,8 @@ const { Workflow, Tasks } = require('./lib/index');
 
 const On = '1';
 
+const isPatchVersion = () => process.env.patch !== On;
+
 new Workflow('to-self', {
   description: '提交到远程',
   steps: [
@@ -23,14 +25,19 @@ new Workflow('to-self', {
     },
     {
       name: '打版本',
-      skip: () => process.env.patch !== On,
+      skip: isPatchVersion,
       use: Tasks.Shell.run({ cmd: 'npm run version:patch' }),
     },
     { name: '推送', use: Tasks.Git.push() },
     {
       name: '发布到npm',
-      skip: () => process.env.patch !== On,
+      skip: isPatchVersion,
       use: Tasks.Shell.run({ cmd: 'npm publish' }),
+    },
+    {
+      name: '推送tag',
+      skip: isPatchVersion,
+      use: Tasks.Shell.run({ cmd: 'git push --tags' }),
     },
   ],
 });

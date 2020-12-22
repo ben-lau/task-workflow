@@ -28,6 +28,11 @@ export enum EnumExecuteLevel {
   Fatal,
 }
 
+const getWarnMessageInExecute = (error: PromisifySpawnLib.Result | Error) =>
+  error instanceof Error
+    ? `${error.stack ? `STACK:${error.stack} ` : ''}\n${error.message}`
+    : `CODE:${error.code} \n${error.message}`;
+
 const getErrorMessageInExecute = (
   error: PromisifySpawnLib.Result | Error,
   command: string
@@ -56,7 +61,7 @@ export const execute = async (
     if (options.level === EnumExecuteLevel.Fatal) {
       tips.error(getErrorMessageInExecute(err, cmd));
     } else if (options.level === EnumExecuteLevel.Warn) {
-      tips.warn(String(err));
+      tips.warn(getWarnMessageInExecute(err));
     }
     return err;
   }
