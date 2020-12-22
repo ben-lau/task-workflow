@@ -33,8 +33,8 @@ export namespace Shell {
             /* exec的bug */
             resolve({ stdout, stderr });
           } else {
-            reject({ stdout, stderr });
             tips.error(String(err));
+            reject({ stdout, stderr });
           }
         }
       );

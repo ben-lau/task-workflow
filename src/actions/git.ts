@@ -117,9 +117,10 @@ export namespace Git {
   export const merge = async ({ branch }: { branch: string }) => {
     tips.showLoading(`正在合并【${branch}】`);
     const currentBranch = await getCurrentBranchName();
+    const remoteBranchName = await getUpstreamBranchName({ branch });
     const { code, message } = await gitInSilent(
       'merge',
-      branch,
+      remoteBranchName,
       '--no-ff',
       '-m',
       `${Commit.Types.merge}: Merge branch '${branch}' into '${currentBranch}'`

@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { compose, Middleware } from '../utils/compose';
 import { timer } from '../utils/timer';
 import { tips } from '../utils/tips';

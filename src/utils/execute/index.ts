@@ -56,7 +56,7 @@ export const execute = async (
     if (options.level === EnumExecuteLevel.Fatal) {
       tips.error(getErrorMessageInExecute(err, cmd));
     } else if (options.level === EnumExecuteLevel.Warn) {
-      tips.warn(getErrorMessageInExecute(err, cmd));
+      tips.warn(String(err));
     }
     return err;
   }
