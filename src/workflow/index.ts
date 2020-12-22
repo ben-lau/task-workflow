@@ -1,18 +1,35 @@
+import { type } from 'os';
 import { compose, Middleware } from '../utils/compose';
 import { timer } from '../utils/timer';
 import { tips } from '../utils/tips';
-
-interface IWorkflowConfig {
-  description: string;
-  validate(): Promise<boolean> | boolean;
-  steps: Array<Step>;
-}
 
 interface IFunctionalTask {
   (lastParams: any): any | Promise<any>;
 }
 
-type Step = { name: string; use: IFunctionalTask } | IFunctionalTask;
+interface IValidate {
+  (): Promise<boolean> | boolean;
+}
+
+interface ISkip {
+  (lastParams: any): Promise<boolean> | boolean;
+}
+
+interface IConfigurableStep {
+  name: string;
+  use: IFunctionalTask;
+  skip?: ISkip;
+}
+
+type IFunctionalStep = IFunctionalTask;
+
+type Step = IConfigurableStep | IFunctionalStep;
+
+interface IWorkflowConfig {
+  description: string;
+  validate: IValidate;
+  steps: Array<Step>;
+}
 
 const DEFAULT_CONFIG: IWorkflowConfig = {
   description: '未命名流程',
@@ -33,49 +50,66 @@ export class Workflow {
     this.register();
   }
 
-  register() {
+  private register() {
     if (Workflow.maps.has(this.name)) {
       tips.warn(`已存在【${this.name}】流程`);
     }
     Workflow.maps.set(this.name, this);
   }
 
+  private validateStep(step: Step) {
+    let name = '未命名任务';
+    let task: IFunctionalTask = () => void 0;
+    let skip: ISkip = () => false;
+    if (typeof step !== 'function') {
+      name = step.name;
+      skip = step.skip ?? skip;
+      task = step.use;
+      if (typeof task !== 'function') {
+        tips.error(`【${name}】中找不到'use'`);
+      }
+    } else {
+      task = step;
+    }
+    return {
+      name,
+      task,
+      skip,
+    };
+  }
+
+  private createTaskQueue() {
+    return this.config.steps
+      .filter(Boolean)
+      .map<Middleware>((step, index) => async (prev, next) => {
+        const { name, task, skip } = this.validateStep(step);
+        const taskIndex = index + 1;
+        // 打印空行
+        tips.log('');
+
+        if (await skip(prev)) {
+          tips.log(`==${taskIndex}、【${name}】被跳过==`);
+          return await next(prev);
+        }
+
+        tips.log(`==${taskIndex}、开始【${name}】==`);
+
+        timer.start(name);
+        const result = await task(prev);
+        const timeConsuming = timer.end(name);
+        tips.log(`==${taskIndex}、【${name}】完成，耗时${timeConsuming}ms==`);
+
+        return await next(result);
+      });
+  }
+
   async start() {
     if (!(await this.config.validate())) {
-      tips.warn(`${this.name}验证失败，已终止`);
+      tips.warn(`【${this.description}】验证失败，已终止`);
       return;
     } else {
       tips.succeed(`开始【${this.description}】`);
       return compose(this.createTaskQueue())();
     }
-  }
-
-  createTaskQueue() {
-    return this.config.steps
-      .filter(Boolean)
-      .map<Middleware>((item, index) => async (prev, next) => {
-        let taskName = '未命名任务';
-        let task: IFunctionalTask = () => void 0;
-        if (typeof item !== 'function') {
-          taskName = item.name;
-          task = item.use;
-        } else {
-          task = item;
-        }
-        const taskIndex = index + 1;
-        // 打印空行
-        tips.log('');
-
-        tips.log(`=====${taskIndex}、开始【${taskName}】=====`);
-
-        timer.start(taskName);
-        const result = await task(prev);
-        const timeConsuming = timer.end(taskName);
-        tips.log(
-          `=====${taskIndex}、【${taskName}】完成，耗时${timeConsuming}ms=====`
-        );
-
-        return await next(result);
-      });
   }
 }

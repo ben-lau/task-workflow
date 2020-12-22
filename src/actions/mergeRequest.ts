@@ -1,4 +1,5 @@
 import open from 'open';
+import { tips } from '../utils/tips';
 import { Git } from './git';
 
 export namespace MergeRequest {
@@ -42,14 +43,14 @@ export namespace MergeRequest {
     sourceBranch,
     targetBranch,
     title,
-  }: IParamsCreate) =>
-    open(
-      getMergeRequestAddress({
-        projectUrl:
-          projectUrl || getProjectUrlFromRepo(await Git.getRemoteUrl()),
-        sourceBranch,
-        targetBranch,
-        title,
-      })
-    );
+  }: IParamsCreate) => {
+    const addr = getMergeRequestAddress({
+      projectUrl: projectUrl || getProjectUrlFromRepo(await Git.getRemoteUrl()),
+      sourceBranch,
+      targetBranch,
+      title,
+    });
+    tips.info(`即将打开：${addr}`);
+    return open(addr);
+  };
 }

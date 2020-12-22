@@ -3,6 +3,12 @@ const { Workflow, Tasks } = require('./lib/index');
 new Workflow('to-self', {
   description: '提交到远程',
   steps: [
+    {
+      name: '构建',
+      skip: async () =>
+        !(await Tasks.AskFor.shouldContinue({ message: '是否需要构建？' })()),
+      use: Tasks.Shell.run({ cmd: 'npm run build' }),
+    },
     { name: '获取提交信息', use: Tasks.AskFor.commitMessage() },
     { name: '提交', use: Tasks.Git.commit(message => [{ message }]) },
     { name: '推送', use: Tasks.Git.push() },

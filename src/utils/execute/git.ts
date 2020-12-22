@@ -7,14 +7,12 @@ interface GitMethods {
 
 const cmdGit = 'git';
 
-const RegLastNewLine = /(\n\r|\n|\r)$/;
-
 const NoNewLine = (gitMethod: GitMethods): GitMethods => async (
   ...args: Array<string>
 ) => {
   const { message, code } = await gitMethod(...args);
   return {
-    message: message.replace(RegLastNewLine, ''),
+    message: message.trim(),
     code,
   };
 };
