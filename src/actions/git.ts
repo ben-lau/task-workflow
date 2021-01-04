@@ -144,15 +144,16 @@ export namespace Git {
   export const clone = async ({
     url,
     branch = 'master',
-    path,
+    path = '',
   }: {
     url: string;
     branch?: string;
     path?: string;
   }) => {
-    tips.showLoading(`克隆【${url}】`);
-    await git('clone', url, '-b', branch, path ?? '');
-    tips.succeed(`克隆【${url}】`);
+    const msg = `克隆【${url}】，分支【${branch}】`;
+    tips.showLoading(msg);
+    await git('clone', url, '-b', branch, path);
+    tips.succeed(msg);
   };
 
   /**
@@ -257,9 +258,31 @@ export namespace Git {
   /**
    * 获取分支上一次提交记录
    */
-  export const getLastCommit = async ({ branch }: { branch: string }) => {
+  export const getLastCommitMessage = async ({
+    branch,
+  }: {
+    branch: string;
+  }) => {
     const remoteBranchName = await getUpstreamBranchName({ branch });
     const { message } = await git('log', remoteBranchName, '-1', '--format=%s');
+    return message;
+  };
+
+  /**
+   * 获取分支上一次提交记录主体
+   */
+  export const getLastCommitBody = async ({ branch }: { branch: string }) => {
+    const remoteBranchName = await getUpstreamBranchName({ branch });
+    const { message } = await git('log', remoteBranchName, '-1', '--format=%b');
+    return message;
+  };
+
+  /**
+   * 获取分支上一次提交记录哈希
+   */
+  export const getLastCommitHash = async ({ branch }: { branch: string }) => {
+    const remoteBranchName = await getUpstreamBranchName({ branch });
+    const { message } = await git('log', remoteBranchName, '-1', '--format=%H');
     return message;
   };
 }

@@ -74,7 +74,19 @@ export declare namespace Git {
     /**
      * 获取分支上一次提交记录
      */
-    const getLastCommit: ({ branch }: {
+    const getLastCommitMessage: ({ branch, }: {
+        branch: string;
+    }) => Promise<string>;
+    /**
+     * 获取分支上一次提交记录主体
+     */
+    const getLastCommitBody: ({ branch }: {
+        branch: string;
+    }) => Promise<string>;
+    /**
+     * 获取分支上一次提交记录哈希
+     */
+    const getLastCommitHash: ({ branch }: {
         branch: string;
     }) => Promise<string>;
 }

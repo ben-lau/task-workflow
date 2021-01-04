@@ -1,3 +1,3 @@
 export { Workflow } from './workflow';
 export { Tasks } from './tasks';
-export { taskStart } from './bin';
+export { workStart } from './bin';

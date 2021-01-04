@@ -43,16 +43,16 @@ new Workflow('build-and-link', {
 完成后，可以使用命令行或者内置函数：
 
 ```bash
-task-start to-self --from workflow.config.js
-# task-start [workflowId] --from <path>
+work-start to-self --from workflow.config.js
+# work-start [workflowId] --from <path>
 ```
 
 或
 
 ```javascript
-import { taskStart } from 'task-workflow';
+import { workStart } from 'task-workflow';
 
-taskStart({
+workStart({
   from: 'workflow.config.js',
   workflowId: 'to-self',
 });

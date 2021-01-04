@@ -2,15 +2,15 @@ import { Workflow } from '../workflow';
 import { program } from 'commander';
 import path from 'path';
 
-interface ITaskStartParams {
+interface IWorkStartParams {
   from?: string;
   workflowId?: string;
 }
 
-export const taskStart = async ({
+export const workStart = async ({
   from,
   workflowId,
-}: ITaskStartParams = {}) => {
+}: IWorkStartParams = {}) => {
   program.option('-f, --from <path>', '初始化文件路径').parse(process.argv);
 
   if (program.from) {

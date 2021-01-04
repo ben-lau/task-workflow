@@ -1,6 +1,6 @@
-interface ITaskStartParams {
+interface IWorkStartParams {
     from?: string;
     workflowId?: string;
 }
-export declare const taskStart: ({ from, workflowId, }?: ITaskStartParams) => Promise<void>;
+export declare const workStart: ({ from, workflowId, }?: IWorkStartParams) => Promise<void>;
 export {};
