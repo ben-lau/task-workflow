@@ -15,4 +15,8 @@ export declare namespace Environment {
      * 用户账号
      */
     const FILE_USER_ACCOUNT: string;
+    /**
+     * 错误退出码
+     */
+    const ERROR_CODE = 10;
 }

@@ -6,6 +6,8 @@ import { Environment } from '../constants';
 
 const LOG_DIR = Environment.DIR_STORAGE;
 
+const ERROR_CODE = Environment.ERROR_CODE;
+
 const FatalReport: MethodDecorator = (
   target,
   key,
@@ -32,7 +34,7 @@ const ExitProcess: MethodDecorator = (
     try {
       originValue.apply(this, args);
     } finally {
-      process.exit();
+      process.exit(ERROR_CODE);
     }
   };
 };

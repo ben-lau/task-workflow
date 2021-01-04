@@ -20,4 +20,9 @@ export namespace Environment {
    * 用户账号
    */
   export const FILE_USER_ACCOUNT = path.resolve(DIR_STORAGE, 'user_account');
+
+  /**
+   * 错误退出码
+   */
+  export const ERROR_CODE = 10;
 }
