@@ -126,9 +126,9 @@ export namespace Git {
     const remoteBranchName = await getUpstreamBranchName({ branch });
     const mergeMessage = `${
       Commit.Types.merge
-    }: Merge branch '${branch}' into '${currentBranch}${
+    }: Merge branch '${branch}' into '${currentBranch}'${
       message ? ` -> ${message}` : ''
-    }'`;
+    }`;
     const { code, message: rs } = await gitInSilent(
       'merge',
       remoteBranchName,
