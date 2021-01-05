@@ -118,19 +118,21 @@ export namespace Git {
     tips.showLoading(`正在合并【${branch}】`);
     const currentBranch = await getCurrentBranchName();
     const remoteBranchName = await getUpstreamBranchName({ branch });
+    const targetBranchLastCommit = await getLastCommitMessage({ branch });
+    const mergeMessage = `${Commit.Types.merge}: Merge branch '${branch}' into '${currentBranch}: ${targetBranchLastCommit}'`;
     const { code, message } = await gitInSilent(
       'merge',
       remoteBranchName,
       '--no-ff',
       '-m',
-      `${Commit.Types.merge}: Merge branch '${branch}' into '${currentBranch}'`
+      mergeMessage
     );
     tips.hideLoading();
 
     if (code !== CODE_SUCCESS && checkConflict(message)) {
       if (await waitForDealWithConflict()) {
         await commit({
-          message: `${Commit.Types.merge}: Merge branch '${branch}' into '${currentBranch}'`,
+          message: mergeMessage,
         });
       } else {
         tips.error('发现冲突，请解决后再提交');
