@@ -26,8 +26,9 @@ export declare namespace Git {
     /**
      * 合并操作
      */
-    const merge: ({ branch }: {
+    const merge: ({ branch, message, }: {
         branch: string;
+        message?: string | undefined;
     }) => Promise<void>;
     /**
      * 克隆仓库

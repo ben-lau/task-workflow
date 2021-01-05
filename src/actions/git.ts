@@ -114,13 +114,22 @@ export namespace Git {
   /**
    * 合并操作
    */
-  export const merge = async ({ branch }: { branch: string }) => {
+  export const merge = async ({
+    branch,
+    message,
+  }: {
+    branch: string;
+    message?: string;
+  }) => {
     tips.showLoading(`正在合并【${branch}】`);
     const currentBranch = await getCurrentBranchName();
     const remoteBranchName = await getUpstreamBranchName({ branch });
-    const targetBranchLastCommit = await getLastCommitMessage({ branch });
-    const mergeMessage = `${Commit.Types.merge}: Merge branch '${branch}' into '${currentBranch}: ${targetBranchLastCommit}'`;
-    const { code, message } = await gitInSilent(
+    const mergeMessage = `${
+      Commit.Types.merge
+    }: Merge branch '${branch}' into '${currentBranch}${
+      message ? ` -> ${message}` : ''
+    }'`;
+    const { code, message: rs } = await gitInSilent(
       'merge',
       remoteBranchName,
       '--no-ff',
@@ -129,7 +138,7 @@ export namespace Git {
     );
     tips.hideLoading();
 
-    if (code !== CODE_SUCCESS && checkConflict(message)) {
+    if (code !== CODE_SUCCESS && checkConflict(rs)) {
       if (await waitForDealWithConflict()) {
         await commit({
           message: mergeMessage,
