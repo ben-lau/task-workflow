@@ -13,6 +13,11 @@ const checkConflict = (message: string) => RegConflictMessage.test(message);
 
 export namespace Git {
   /**
+   * 初始化it
+   */
+  export const init = () => git('init');
+
+  /**
    * 配置git
    */
   export const config = async ({
@@ -21,7 +26,7 @@ export namespace Git {
   }: {
     name?: string;
     email?: string;
-  }) => {
+  } = {}) => {
     if (name) {
       await git('config', 'user.name', `"${name}"`);
     }
@@ -75,6 +80,24 @@ export namespace Git {
     const currentBranch = await getCurrentBranchName();
     tips.showLoading(`推送至远程【${currentBranch}】`);
     await gitInSilent('push', 'origin');
+    tips.hideLoading();
+  };
+
+  /**
+   * 强推至远程分支【危险操作】
+   */
+  export const pushForceDangerously = async ({
+    url,
+    branch,
+  }: {
+    url: string;
+    branch: string;
+  }) => {
+    await AskFor.shouldContinue({
+      message: `危险！将要强推至【${url}】：分支【${branch}】，请确认`,
+    });
+    tips.showLoading(`推送至远程【${url}】：分支【${branch}】`);
+    await git('push', '-u', url, 'HEAD:', branch, '--force');
     tips.hideLoading();
   };
 

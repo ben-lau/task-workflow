@@ -4,11 +4,16 @@ import { homedir } from 'os';
 export namespace File {
   /**
    * 复制文件
-   * @param from 起始目录
+   * @param {string | Array<string>} from 目标文件或者文件夹
    * @param to 终点目录
    */
-  export const copyTo = ({ from, to }: { from: string; to: string }) =>
-    execute('cp', ['-R', from, to]);
+  export const copyTo = ({
+    from,
+    to,
+  }: {
+    from: string | Array<string>;
+    to: string;
+  }) => execute('cp', ['-R', ...(Array.isArray(from) ? from : [from]), to]);
 
   /**
    * 进入文件夹
@@ -28,4 +33,11 @@ export namespace File {
    */
   export const generateDir = ({ dir }: { dir: string }) =>
     execute('mkdir', ['-p', dir]);
+
+  /**
+   * 获取文件夹下所有文件名
+   * @param dir 文件夹路径
+   */
+  export const getList = ({ dir = '.' }: { dir?: string } = {}) =>
+    execute('ls', ['-A', dir]);
 }

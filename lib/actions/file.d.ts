@@ -1,11 +1,11 @@
 export declare namespace File {
     /**
      * 复制文件
-     * @param from 起始目录
+     * @param {string | Array<string>} from 目标文件或者文件夹
      * @param to 终点目录
      */
-    const copyTo: ({ from, to }: {
-        from: string;
+    const copyTo: ({ from, to, }: {
+        from: string | Array<string>;
         to: string;
     }) => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
     /**
@@ -21,5 +21,12 @@ export declare namespace File {
      */
     const generateDir: ({ dir }: {
         dir: string;
+    }) => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
+    /**
+     * 获取文件夹下所有文件名
+     * @param dir 文件夹路径
+     */
+    const getList: ({ dir }?: {
+        dir?: string | undefined;
     }) => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
 }

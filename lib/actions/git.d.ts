@@ -1,8 +1,12 @@
 export declare namespace Git {
     /**
+     * 初始化it
+     */
+    const init: () => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
+    /**
      * 配置git
      */
-    const config: ({ name, email, }: {
+    const config: ({ name, email, }?: {
         name?: string | undefined;
         email?: string | undefined;
     }) => Promise<void>;
@@ -17,6 +21,13 @@ export declare namespace Git {
      * 推送操作
      */
     const push: () => Promise<void>;
+    /**
+     * 强推至远程分支【危险操作】
+     */
+    const pushForceDangerously: ({ url, branch, }: {
+        url: string;
+        branch: string;
+    }) => Promise<void>;
     /**
      * 切换分支
      */
