@@ -28,5 +28,5 @@ export declare namespace File {
      */
     const getList: ({ dir }?: {
         dir?: string | undefined;
-    }) => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
+    }) => Promise<string[]>;
 }

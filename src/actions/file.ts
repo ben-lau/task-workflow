@@ -38,6 +38,8 @@ export namespace File {
    * 获取文件夹下所有文件名
    * @param dir 文件夹路径
    */
-  export const getList = ({ dir = '.' }: { dir?: string } = {}) =>
-    execute('ls', ['-A', dir]);
+  export const getList = async ({ dir = '.' }: { dir?: string } = {}) => {
+    const { message } = await execute('ls', ['-A', dir]);
+    return message.split('\n').filter(Boolean);
+  };
 }
