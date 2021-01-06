@@ -97,7 +97,7 @@ export namespace Git {
       message: `危险！将要强推至【${url}】：分支【${branch}】，请确认`,
     });
     tips.showLoading(`推送至远程【${url}】：分支【${branch}】`);
-    await git('push', '-u', url, 'HEAD:', branch, '--force');
+    await git('push', '-u', url, `HEAD:${branch}`, '--force');
     tips.hideLoading();
   };
 
