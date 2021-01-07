@@ -12,9 +12,10 @@ export const workStart = async ({
   workflowId,
 }: IWorkStartParams = {}) => {
   program.option('-f, --from <path>', '初始化文件路径').parse(process.argv);
+  from = from || program.from;
 
-  if (program.from) {
-    await import(path.join(process.cwd(), from || program.from));
+  if (from) {
+    await import(path.join(process.cwd(), from));
   }
 
   Workflow.maps.forEach((item, key) => {
