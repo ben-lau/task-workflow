@@ -27,7 +27,7 @@ export declare namespace Git {
     const pushForceDangerously: ({ url, branch, }: {
         url: string;
         branch: string;
-    }) => Promise<void>;
+    }) => Promise<undefined>;
     /**
      * 切换分支
      */
