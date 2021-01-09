@@ -79,7 +79,7 @@ export namespace Git {
 
     const currentBranch = await getCurrentBranchName();
     tips.showLoading(`推送至远程【${currentBranch}】`);
-    await gitInSilent('push', 'origin');
+    await gitInSilent('push', 'origin', currentBranch);
     tips.hideLoading();
   };
 
@@ -226,14 +226,21 @@ export namespace Git {
     branch,
   }: {
     branch: string;
-  }) => {
+  }): Promise<string> => {
     if (await getIsExistLocalBranch({ branch })) {
-      const { message } = await git(
+      const { code, message } = await gitWithoutBreak(
         'rev-parse',
         '--abbrev-ref',
         `${branch}@{u}`
       );
-      return message;
+      if (code) {
+        tips.showLoading('上游分支不存在，开始创建上游分支');
+        await git('push', '-u', 'origin', branch);
+        tips.hideLoading();
+        return getUpstreamBranchName({ branch });
+      } else {
+        return message;
+      }
     } else {
       return `origin/${branch}`;
     }
