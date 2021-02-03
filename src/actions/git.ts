@@ -131,8 +131,8 @@ export namespace Git {
     } else {
       await git(
         'checkout',
-        branch,
         '-b',
+        branch,
         await getUpstreamBranchName({ branch })
       );
     }
@@ -228,7 +228,7 @@ export namespace Git {
     branch: string;
   }): Promise<string> => {
     if (await getIsExistLocalBranch({ branch })) {
-      const { code, message } = await gitWithoutBreak(
+      const { code, message: upstreamBranch } = await gitWithoutBreak(
         'rev-parse',
         '--abbrev-ref',
         `${branch}@{u}`
@@ -239,7 +239,12 @@ export namespace Git {
         tips.hideLoading();
         return getUpstreamBranchName({ branch });
       } else {
-        return message;
+        if (upstreamBranch.replace('origin/', '') !== branch) {
+          tips.warn(
+            `本地分支：【${branch}】和上游分支：【${upstreamBranch}】似乎不一致`
+          );
+        }
+        return upstreamBranch;
       }
     } else {
       return `origin/${branch}`;
