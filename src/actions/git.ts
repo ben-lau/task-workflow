@@ -146,9 +146,11 @@ export namespace Git {
   export const merge = async ({
     branch,
     message,
+    fastForward = true,
   }: {
     branch: string;
     message?: string;
+    fastForward?: boolean;
   }) => {
     tips.showLoading(`正在合并【${branch}】`);
     const currentBranch = await getCurrentBranchName();
@@ -161,7 +163,7 @@ export namespace Git {
     const { code, message: rs } = await gitInSilent(
       'merge',
       remoteBranchName,
-      '--no-ff',
+      fastForward ? '--ff' : '--no-ff',
       '-m',
       mergeMessage
     );

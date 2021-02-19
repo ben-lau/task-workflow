@@ -37,9 +37,10 @@ export declare namespace Git {
     /**
      * 合并操作
      */
-    const merge: ({ branch, message, }: {
+    const merge: ({ branch, message, fastForward, }: {
         branch: string;
         message?: string | undefined;
+        fastForward?: boolean | undefined;
     }) => Promise<void>;
     /**
      * 克隆仓库
