@@ -102,4 +102,10 @@ export declare namespace Git {
     const getLastCommitHash: ({ branch }: {
         branch: string;
     }) => Promise<string>;
+    /**
+     * 获取git配置
+     */
+    const getConfig: ({ key }: {
+        key: string;
+    }) => Promise<string>;
 }

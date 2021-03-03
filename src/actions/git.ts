@@ -339,4 +339,12 @@ export namespace Git {
     const { message } = await git('log', remoteBranchName, '-1', '--format=%H');
     return message;
   };
+
+  /**
+   * 获取git配置
+   */
+  export const getConfig = async ({ key }: { key: string }) => {
+    const { message } = await git('config', '--get', key);
+    return message;
+  };
 }
