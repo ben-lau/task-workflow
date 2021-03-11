@@ -8,9 +8,6 @@ import { AskFor } from './askFor';
 // 冲突正则
 const RegConflictMessage = /CONFLICT/i;
 
-// 检查是否有冲突标志
-const checkConflict = (message: string) => RegConflictMessage.test(message);
-
 export namespace Git {
   /**
    * 初始化it
@@ -61,7 +58,10 @@ export namespace Git {
     const { code, message } = await gitInSilent('pull');
     tips.hideLoading();
 
-    if (code !== CODE_SUCCESS && checkConflict(message)) {
+    if (
+      code !== CODE_SUCCESS &&
+      (await getIsHasConflict({ message })) // 防止git输出为中文
+    ) {
       if (await waitForDealWithConflict()) {
         await commit({ message: `${Commit.Types.conflict}: 合并冲突` });
       } else {
@@ -169,7 +169,7 @@ export namespace Git {
     );
     tips.hideLoading();
 
-    if (code !== CODE_SUCCESS && checkConflict(rs)) {
+    if (code !== CODE_SUCCESS && (await getIsHasConflict({ message: rs }))) {
       if (await waitForDealWithConflict()) {
         await commit({
           message: mergeMessage,
@@ -346,5 +346,18 @@ export namespace Git {
   export const getConfig = async ({ key }: { key: string }) => {
     const { message } = await git('config', '--get', key);
     return message;
+  };
+
+  /**
+   * 检查是否有冲突
+   */
+  export const getIsHasConflict = async ({ message }: { message: string }) => {
+    if (RegConflictMessage.test(message)) {
+      return true;
+    } else {
+      // 防止git输出语言为非英语
+      const { code } = await gitWithoutBreak('--no-pager', 'diff', '--check');
+      return code !== CODE_SUCCESS;
+    }
   };
 }

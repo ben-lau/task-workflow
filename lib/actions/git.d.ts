@@ -108,4 +108,10 @@ export declare namespace Git {
     const getConfig: ({ key }: {
         key: string;
     }) => Promise<string>;
+    /**
+     * 检查是否有冲突
+     */
+    const getIsHasConflict: ({ message }: {
+        message: string;
+    }) => Promise<boolean>;
 }
