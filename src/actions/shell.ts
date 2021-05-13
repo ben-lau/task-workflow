@@ -19,7 +19,7 @@ export namespace Shell {
         cmd,
         {
           maxBuffer: TEN_MBYTE,
-          env: process.env,
+          env: { ...process.env, NPM_CONFIG_COLOR: 'always' },
           encoding: 'utf8',
         },
         (err, stdout, stderr) => {
