@@ -7,15 +7,15 @@ interface GitMethods {
 
 const cmdGit = 'git';
 
-const NoNewLine = (gitMethod: GitMethods): GitMethods => async (
-  ...args: Array<string>
-) => {
-  const { message, code } = await gitMethod(...args);
-  return {
-    message: message.trim(),
-    code,
+const NoNewLine =
+  (gitMethod: GitMethods): GitMethods =>
+  async (...args: Array<string>) => {
+    const { message, code } = await gitMethod(...args);
+    return {
+      message: message.trim(),
+      code,
+    };
   };
-};
 
 export const git = NoNewLine((...args: Array<string>) =>
   execute(cmdGit, args, { level: EnumExecuteLevel.Fatal })
@@ -25,6 +25,10 @@ export const gitWithoutBreak = NoNewLine((...args: Array<string>) =>
   execute(cmdGit, args, { level: EnumExecuteLevel.Warn })
 );
 
-export const gitInSilent = NoNewLine((...args: Array<string>) =>
-  execute(cmdGit, args, { level: EnumExecuteLevel.None })
-);
+export const gitInSilent = NoNewLine(async (...args: Array<string>) => {
+  try {
+    return await execute(cmdGit, args, { level: EnumExecuteLevel.None });
+  } catch (err) {
+    return err;
+  }
+});
