@@ -1,15 +1,14 @@
 export declare namespace Shell {
-    interface IResultRunCommand extends Promise<{
-        stdout: string;
-        stderr: string;
-    }> {
-    }
     /**
-     * 执行指令
-     * @param cmd 字符串指令
+     * 执行指令，但无法获取结果，只能返回成功失败
      */
-    export const run: ({ cmd }: {
+    const run: ({ cmd }: {
         cmd: string;
-    }) => IResultRunCommand;
-    export {};
+    }) => Promise<unknown>;
+    /**
+     * 执行指令，可以获取结果，但是会丢失颜色等信息
+     */
+    const exec: ({ cmd }: {
+        cmd: string;
+    }) => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
 }

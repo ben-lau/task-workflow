@@ -60,9 +60,13 @@ export const execute = async (
     const cmd = `${command} ${argumentList.join(' ')}`;
     if (options.level === EnumExecuteLevel.Fatal) {
       tips.error(getErrorMessageInExecute(err, cmd));
+      /* never */
+      return Promise.reject(err);
     } else if (options.level === EnumExecuteLevel.Warn) {
       tips.warn(getWarnMessageInExecute(err));
+      return err;
+    } else {
+      return Promise.reject(err);
     }
-    return err;
   }
 };

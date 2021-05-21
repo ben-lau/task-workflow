@@ -37,9 +37,9 @@ export namespace Git {
    */
   export const commit = async ({ message }: { message: string }) => {
     tips.showLoading('检查工作区');
-    const { message: status } = await git('status', '-z', '-u');
+    const hasToBeCommit = await getToBeCommit();
 
-    if (!status) {
+    if (!hasToBeCommit) {
       tips.error('无需要提交的文件');
       return;
     }
@@ -112,11 +112,11 @@ export namespace Git {
    */
   export const checkout = async ({ branch }: { branch: string }) => {
     tips.showLoading('检查工作区');
-    const { message } = await git('status', '-z', '-u');
+    const hasToBeCommit = await getToBeCommit();
     tips.hideLoading();
 
     if (
-      message &&
+      hasToBeCommit &&
       !(await AskFor.shouldContinue({
         message: '工作区尚有未提交更改，是否切换分支？',
       }))
@@ -256,9 +256,9 @@ export namespace Git {
   /**
    * 获取还在工作区的更改
    */
-  export const getTobeCommit = async () => {
-    const { message } = await git('status', '-s');
-    return message;
+  export const getToBeCommit = async () => {
+    const { message } = await git('status', '-s', '-u');
+    return message.trim() !== '';
   };
 
   /**
@@ -274,7 +274,7 @@ export namespace Git {
       `^${remoteBranchName}`,
       '--oneline'
     );
-    return message;
+    return message.trim() !== '';
   };
 
   /**
@@ -344,8 +344,8 @@ export namespace Git {
    * 获取git配置
    */
   export const getConfig = async ({ key }: { key: string }) => {
-    const { message } = await git('config', '--get', key);
-    return message;
+    const { code, message } = await gitWithoutBreak('config', '--get', key);
+    return code === CODE_SUCCESS ? message : '';
   };
 
   /**

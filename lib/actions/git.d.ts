@@ -69,11 +69,11 @@ export declare namespace Git {
     /**
      * 获取还在工作区的更改
      */
-    const getTobeCommit: () => Promise<string>;
+    const getToBeCommit: () => Promise<boolean>;
     /**
      * 获取未推送远程的commit
      */
-    const getToBePushed: () => Promise<string>;
+    const getToBePushed: () => Promise<boolean>;
     /**
      * 等待冲突处理
      * 当无冲突则返回true；
