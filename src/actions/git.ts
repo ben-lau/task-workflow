@@ -68,6 +68,9 @@ export namespace Git {
         tips.error('发现冲突，请解决后再提交');
         return;
       }
+    } else if (code !== CODE_SUCCESS) {
+      tips.error(message);
+      return Promise.reject(message);
     }
   };
 
@@ -79,7 +82,7 @@ export namespace Git {
 
     const currentBranch = await getCurrentBranchName();
     tips.showLoading(`推送至远程【${currentBranch}】`);
-    await gitInSilent('push', 'origin', currentBranch);
+    await git('push', 'origin', currentBranch);
     tips.hideLoading();
   };
 
@@ -177,6 +180,9 @@ export namespace Git {
       } else {
         tips.error('发现冲突，请解决后再提交');
       }
+    } else if (code !== CODE_SUCCESS) {
+      tips.error(rs);
+      return Promise.reject(rs);
     }
   };
 

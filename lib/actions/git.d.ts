@@ -16,7 +16,7 @@ export declare namespace Git {
     const commit: ({ message }: {
         message: string;
     }) => Promise<void>;
-    const pull: () => Promise<void>;
+    const pull: () => Promise<undefined>;
     /**
      * 推送操作
      */
@@ -41,7 +41,7 @@ export declare namespace Git {
         branch: string;
         message?: string | undefined;
         fastForward?: boolean | undefined;
-    }) => Promise<void>;
+    }) => Promise<undefined>;
     /**
      * 克隆仓库
      */
