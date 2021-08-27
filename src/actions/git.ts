@@ -54,6 +54,7 @@ export namespace Git {
 
   export const pull = async () => {
     const currentBranch = await getCurrentBranchName();
+    await getUpstreamBranchName({ branch: currentBranch });
     tips.showLoading(`拉取远程【${currentBranch}】`);
     const { code, message } = await gitInSilent('pull');
     tips.hideLoading();
