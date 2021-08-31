@@ -365,14 +365,14 @@ export namespace Git {
     } else {
       // 防止git输出语言为非英语
       // 这块不再显示无效空格的错误
-      const { code } = await gitInSilent(
+      const { message } = await gitInSilent(
         '--no-pager',
         'diff',
         '--name-only',
         '--diff-filter=U'
       );
       // const { code } = await gitWithoutBreak('--no-pager', 'diff', '--check');
-      return code !== CODE_SUCCESS;
+      return message.trim() !== '';
     }
   };
 }
