@@ -286,15 +286,16 @@ export namespace Git {
 
   /**
    * 等待冲突处理
-   * @returns {Promise<boolean>} 当无冲突则返回true；有冲突会询问是否解决完毕，如果不继续则返回false，如果继续则递归。
+   * 当无冲突则返回true；
+   * 有冲突会询问是否解决完毕，如果不继续则返回false，如果继续则递归。
    */
   export const waitForDealWithConflict = async (): Promise<boolean> => {
-    if (await getIsHasConflict()) {
-      const { message } = await gitWithoutBreak(
-        '--no-pager',
-        'diff',
-        '--check'
-      );
+    const { message, code } = await gitWithoutBreak(
+      '--no-pager',
+      'diff',
+      '--check'
+    );
+    if (code !== CODE_SUCCESS) {
       return (await AskFor.shouldContinue({
         message: `还有${getLineCount(
           message
@@ -357,22 +358,13 @@ export namespace Git {
   /**
    * 检查是否有冲突
    */
-  export const getIsHasConflict = async (
-    { message }: { message: string } = { message: '' }
-  ) => {
+  export const getIsHasConflict = async ({ message }: { message: string }) => {
     if (RegConflictMessage.test(message)) {
       return true;
     } else {
       // 防止git输出语言为非英语
-      // 这块不再显示无效空格的错误
-      const { message } = await gitInSilent(
-        '--no-pager',
-        'diff',
-        '--name-only',
-        '--diff-filter=U'
-      );
-      // const { code } = await gitWithoutBreak('--no-pager', 'diff', '--check');
-      return message.trim() !== '';
+      const { code } = await gitWithoutBreak('--no-pager', 'diff', '--check');
+      return code !== CODE_SUCCESS;
     }
   };
 }

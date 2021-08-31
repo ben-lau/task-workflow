@@ -76,7 +76,8 @@ export declare namespace Git {
     const getToBePushed: () => Promise<boolean>;
     /**
      * 等待冲突处理
-     * @returns {Promise<boolean>} 当无冲突则返回true；有冲突会询问是否解决完毕，如果不继续则返回false，如果继续则递归。
+     * 当无冲突则返回true；
+     * 有冲突会询问是否解决完毕，如果不继续则返回false，如果继续则递归。
      */
     const waitForDealWithConflict: () => Promise<boolean>;
     /**
@@ -110,7 +111,7 @@ export declare namespace Git {
     /**
      * 检查是否有冲突
      */
-    const getIsHasConflict: ({ message }?: {
+    const getIsHasConflict: ({ message }: {
         message: string;
     }) => Promise<boolean>;
 }
