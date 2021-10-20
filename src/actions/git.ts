@@ -44,6 +44,7 @@ export namespace Git {
   }) => {
     tips.showLoading('检查工作区');
     const count = await getCountOfToBeCommit();
+    tips.hideLoading();
 
     if (count === 0) {
       tips.error('无需要提交的文件');
