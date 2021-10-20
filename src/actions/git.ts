@@ -35,12 +35,28 @@ export namespace Git {
   /**
    * 提交操作
    */
-  export const commit = async ({ message }: { message: string }) => {
+  export const commit = async ({
+    message,
+    maxChanges = Commit.DEFAULT_MAX_CHANGES,
+  }: {
+    message: string;
+    maxChanges?: number;
+  }) => {
     tips.showLoading('检查工作区');
-    const hasToBeCommit = await getToBeCommit();
+    const count = await getCountOfToBeCommit();
 
-    if (!hasToBeCommit) {
+    if (count === 0) {
       tips.error('无需要提交的文件');
+      return;
+    } else if (
+      maxChanges &&
+      maxChanges > 0 &&
+      count > maxChanges &&
+      !(await AskFor.shouldContinue({
+        message: `本次提交修改数为${count}，是否确认继续？`,
+      }))
+    ) {
+      tips.error('因更改数过多而终止');
       return;
     }
 
@@ -261,11 +277,22 @@ export namespace Git {
   };
 
   /**
-   * 获取还在工作区的更改
+   * 获取是否存在还在工作区的更改
    */
   export const getToBeCommit = async () => {
+    const count = await getCountOfToBeCommit();
+    return count !== 0;
+  };
+
+  /**
+   * 获取还在工作区更改数
+   */
+  export const getCountOfToBeCommit = async () => {
     const { message } = await git('status', '-s', '-u');
-    return message.trim() !== '';
+    return message
+      .trim()
+      .split(/\r\n|\r|\n/g)
+      .filter(Boolean).length;
   };
 
   /**

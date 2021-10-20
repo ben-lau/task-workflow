@@ -13,8 +13,9 @@ export declare namespace Git {
     /**
      * 提交操作
      */
-    const commit: ({ message }: {
+    const commit: ({ message, maxChanges, }: {
         message: string;
+        maxChanges?: number | undefined;
     }) => Promise<void>;
     const pull: () => Promise<undefined>;
     /**
@@ -67,9 +68,13 @@ export declare namespace Git {
         branch: string;
     }) => Promise<string>;
     /**
-     * 获取还在工作区的更改
+     * 获取是否存在还在工作区的更改
      */
     const getToBeCommit: () => Promise<boolean>;
+    /**
+     * 获取还在工作区更改数
+     */
+    const getCountOfToBeCommit: () => Promise<number>;
     /**
      * 获取未推送远程的commit
      */

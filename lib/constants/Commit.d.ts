@@ -8,7 +8,8 @@ export declare namespace Commit {
         test = "test",
         chore = "chore",
         conflict = "conflict",
-        merge = "merge"
+        merge = "merge",
+        doc = "doc"
     }
     interface ITypesMap {
         [p: string]: {
@@ -17,5 +18,6 @@ export declare namespace Commit {
         };
     }
     export const typesMap: ITypesMap;
+    export const DEFAULT_MAX_CHANGES = 100;
     export {};
 }

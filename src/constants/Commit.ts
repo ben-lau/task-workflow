@@ -9,6 +9,7 @@ export namespace Commit {
     chore = 'chore',
     conflict = 'conflict',
     merge = 'merge',
+    doc = 'doc',
   }
 
   interface ITypesMap {
@@ -52,5 +53,12 @@ export namespace Commit {
       name: '代码合并',
       value: Types.merge,
     },
+    [Types.doc]: {
+      name: '文档修改',
+      value: Types.doc,
+    },
   };
+
+  // 默认最大更改数
+  export const DEFAULT_MAX_CHANGES = 100;
 }

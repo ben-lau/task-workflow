@@ -132,3 +132,11 @@ const task2 = Tasks.File.copyTo(lastParams => [
 - `Git` 关于 git 操作的任务集合
 - `MergeRequest` 关于 gitlab 中 mr 的任务结合
 - `Shell` 关于 shell 指令的任务集合
+
+### todos
+
+- [ ] 日志系统重构
+- [ ] 更好用的 shell
+- [ ] git 模块方法的重构
+- [ ] 修改 compose 实现
+- [ ] 增加 task 错误钩子
