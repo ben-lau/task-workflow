@@ -18,7 +18,7 @@ const FatalReport: MethodDecorator = (
     try {
       writeDownErrorLog(args.join(' '));
       originValue.apply(this, args);
-    } catch (err) {
+    } catch (err: any) {
       tips.warn(err);
     }
   };
@@ -49,7 +49,7 @@ const writeDownErrorLog = (message: string) => {
       fs.mkdirSync(LOG_DIR, { recursive: true });
     }
     fs.appendFileSync(fileName, message);
-  } catch (err) {
+  } catch (err: any) {
     tips.warn(err);
   }
 };

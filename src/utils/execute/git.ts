@@ -28,7 +28,7 @@ export const gitWithoutBreak = NoNewLine((...args: Array<string>) =>
 export const gitInSilent = NoNewLine(async (...args: Array<string>) => {
   try {
     return await execute(cmdGit, args, { level: EnumExecuteLevel.None });
-  } catch (err) {
+  } catch (err: any) {
     return err;
   }
 });

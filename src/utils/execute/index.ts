@@ -56,7 +56,7 @@ export const execute = async (
 ): Promise<PromisifySpawnLib.Result> => {
   try {
     return await promisifySpawn(command, argumentList, options);
-  } catch (err) {
+  } catch (err: any) {
     const cmd = `${command} ${argumentList.join(' ')}`;
     if (options.level === EnumExecuteLevel.Fatal) {
       tips.error(getErrorMessageInExecute(err, cmd));
