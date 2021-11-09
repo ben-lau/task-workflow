@@ -50,6 +50,7 @@
     "commander": "^6.2.1",
     "cross-spawn": "^7.0.3",
     "inquirer": "^7.3.3",
+    "minimist": "^1.2.5",
     "open": "^7.3.0",
     "ora": "^5.1.0"
   },

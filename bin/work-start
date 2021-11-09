@@ -1,3 +1,20 @@
 #!/usr/bin/env node
 
-require('../lib/index.js').workStart();
+const path = require('path');
+const minimist = require('minimist');
+let { workStart } = require('./../lib');
+
+const { from } = minimist(process.argv.slice(2));
+
+try {
+  const p = require.resolve('task-workflow', {
+    paths: [from && path.resolve(process.cwd(), from), process.cwd()].filter(
+      Boolean
+    ),
+  });
+  workStart = require(p).workStart;
+} catch (err) {
+  // console.log(err.message);
+}
+
+workStart();

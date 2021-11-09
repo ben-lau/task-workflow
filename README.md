@@ -9,8 +9,16 @@
 
 ## 安装
 
+项目内安装：
+
 ```bash
-npm install -g task-workflow
+npm i task-workflow -D
+```
+
+也可以全局安装：
+
+```bash
+npm i task-workflow -g
 ```
 
 ## 快速使用
@@ -136,7 +144,8 @@ const task2 = Tasks.File.copyTo(lastParams => [
 ### todos
 
 - [ ] 日志系统重构
-- [ ] 更好用的 shell
+- [x] 修改 compose 实现
+- [x] 更好用的 shell
+- [x] 全局调用项目内部配置，静态挂载正确化
 - [ ] git 模块方法的重构
-- [ ] 修改 compose 实现
 - [ ] 增加 task 错误钩子
