@@ -119,4 +119,8 @@ export declare namespace Git {
     const getIsHasConflict: ({ message }: {
         message: string;
     }) => Promise<boolean>;
+    /**
+     * 获取remote名称
+     */
+    const getRemoteName: () => Promise<string>;
 }

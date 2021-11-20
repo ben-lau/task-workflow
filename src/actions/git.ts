@@ -63,6 +63,7 @@ export namespace Git {
 
     tips.showLoading('添加文件');
     await git('add', '-A');
+    tips.hideLoading();
 
     tips.showLoading('提交');
     await git('commit', '-m', message);
@@ -73,7 +74,7 @@ export namespace Git {
     const currentBranch = await getCurrentBranchName();
     await getUpstreamBranchName({ branch: currentBranch });
     tips.showLoading(`拉取远程【${currentBranch}】`);
-    const { code, message } = await gitInSilent('pull');
+    const { code, message } = await gitInSilent('pull', '--ff');
     tips.hideLoading();
 
     if (
@@ -100,7 +101,7 @@ export namespace Git {
 
     const currentBranch = await getCurrentBranchName();
     tips.showLoading(`推送至远程【${currentBranch}】`);
-    await git('push', 'origin', currentBranch);
+    await git('push', await getRemoteName(), currentBranch);
     tips.hideLoading();
   };
 
@@ -157,8 +158,8 @@ export namespace Git {
         await getUpstreamBranchName({ branch })
       );
     }
-    await pull();
     tips.hideLoading();
+    await pull();
   };
 
   /**
@@ -192,9 +193,7 @@ export namespace Git {
 
     if (code !== CODE_SUCCESS && (await getIsHasConflict({ message: rs }))) {
       if (await waitForDealWithConflict()) {
-        await commit({
-          message: mergeMessage,
-        });
+        await commit({ message: mergeMessage });
       } else {
         tips.error('发现冲突，请解决后再提交');
       }
@@ -216,10 +215,9 @@ export namespace Git {
     branch?: string;
     path?: string;
   }) => {
-    const msg = `克隆【${url}】，分支【${branch}】`;
-    tips.showLoading(msg);
+    tips.showLoading(`克隆【${url}】，分支【${branch}】`);
     await git('clone', url, '-b', branch, path);
-    tips.succeed(msg);
+    tips.hideLoading();
   };
 
   /**
@@ -253,6 +251,7 @@ export namespace Git {
   }: {
     branch: string;
   }): Promise<string> => {
+    const remoteName = await getRemoteName();
     if (await getIsExistLocalBranch({ branch })) {
       const { code, message: upstreamBranch } = await gitWithoutBreak(
         'rev-parse',
@@ -261,11 +260,11 @@ export namespace Git {
       );
       if (code) {
         tips.showLoading('上游分支不存在，开始创建上游分支');
-        await git('push', '-u', 'origin', branch);
+        await git('push', '-u', remoteName, branch);
         tips.hideLoading();
         return getUpstreamBranchName({ branch });
       } else {
-        if (upstreamBranch.replace('origin/', '') !== branch) {
+        if (upstreamBranch.replace(`${remoteName}/`, '') !== branch) {
           tips.warn(
             `本地分支：【${branch}】和上游分支：【${upstreamBranch}】似乎不一致`
           );
@@ -273,7 +272,7 @@ export namespace Git {
         return upstreamBranch;
       }
     } else {
-      return `origin/${branch}`;
+      return `${remoteName}/${branch}`;
     }
   };
 
@@ -340,7 +339,12 @@ export namespace Git {
    * 获取远程url
    */
   export const getRemoteUrl = async () => {
-    const { message } = await git('remote', 'get-url', '--push', 'origin');
+    const { message } = await git(
+      'remote',
+      'get-url',
+      '--push',
+      await getRemoteName()
+    );
     return message;
   };
 
@@ -394,5 +398,13 @@ export namespace Git {
       const { code } = await gitWithoutBreak('--no-pager', 'diff', '--check');
       return code !== CODE_SUCCESS;
     }
+  };
+
+  /**
+   * 获取remote名称
+   */
+  export const getRemoteName = async () => {
+    const { code, message } = await gitInSilent('remote');
+    return code !== CODE_SUCCESS ? 'origin' : message || 'origin';
   };
 }

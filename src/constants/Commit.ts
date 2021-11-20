@@ -7,9 +7,9 @@ export namespace Commit {
     refactor = 'refactor',
     test = 'test',
     chore = 'chore',
+    doc = 'doc',
     conflict = 'conflict',
     merge = 'merge',
-    doc = 'doc',
   }
 
   interface ITypesMap {
@@ -45,6 +45,10 @@ export namespace Commit {
       name: '流程或工具更改',
       value: Types.chore,
     },
+    [Types.doc]: {
+      name: '文档修改',
+      value: Types.doc,
+    },
     [Types.conflict]: {
       name: '冲突解决',
       value: Types.conflict,
@@ -52,10 +56,6 @@ export namespace Commit {
     [Types.merge]: {
       name: '代码合并',
       value: Types.merge,
-    },
-    [Types.doc]: {
-      name: '文档修改',
-      value: Types.doc,
     },
   };
 

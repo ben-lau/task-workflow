@@ -12,9 +12,9 @@ export class Scheduler {
       const taskIndex = index + 1;
       let result: unknown;
       // 打印空行
-      tips.log('');
+      tips.info('');
 
-      tips.log(`=====${taskIndex}、开始【${task.name}】=====`);
+      tips.info(`=====${taskIndex}、开始【${task.name}】=====`);
 
       const shouldStart = await callHook(task, 'onStart');
 
@@ -22,11 +22,11 @@ export class Scheduler {
         timer.start(task.name);
         result = await callHook(task, 'run', prev);
         const timeConsuming = timer.end(task.name);
-        tips.log(
+        tips.info(
           `=====${taskIndex}、【${task.name}】完成，耗时${timeConsuming}ms=====`
         );
       } else {
-        tips.log(`=====${taskIndex}、【${task.name}】被跳过=====`);
+        tips.info(`=====${taskIndex}、【${task.name}】被跳过=====`);
       }
 
       return await callHook(task, 'onDone', await next(result));

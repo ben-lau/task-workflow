@@ -1,20 +1,14 @@
 export declare namespace Environment {
-    /**
-     * 调试模式
-     */
-    const DEBUG_MODE = false;
+    const setDebugMode: (isOn: boolean) => boolean;
+    const getDebugMode: () => boolean;
     /**
      * 根目录
      */
-    const DIR_HOME: string;
+    const DIR_ROOT: string;
     /**
      * 存储目录
      */
     const DIR_STORAGE: string;
-    /**
-     * 用户账号
-     */
-    const FILE_USER_ACCOUNT: string;
     /**
      * 错误退出码
      */

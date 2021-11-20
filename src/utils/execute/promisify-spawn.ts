@@ -24,15 +24,15 @@ export const promisifySpawn = (
   options: PromisifySpawnLib.Options = {}
 ) =>
   new Promise<PromisifySpawnLib.Result>((resolve, reject) => {
-    const task = spawn(command, argumentList, { ...options, stdio: 'pipe' });
+    const task = spawn(command, argumentList, { stdio: 'pipe', ...options });
 
     const cache: Array<Buffer> = [];
 
-    task.stdout.on('data', chunk => {
+    task.stdout?.on('data', chunk => {
       cache.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
     });
 
-    task.stderr.on('data', chunk => {
+    task.stderr?.on('data', chunk => {
       cache.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
     });
 

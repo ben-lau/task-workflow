@@ -5,9 +5,9 @@ declare class Tips {
     hideLoading(): ora.Ora;
     succeed(message: string): ora.Ora;
     log(message: string): void;
-    info(message: string): ora.Ora;
+    info(message: string): void;
     warn(message: string): ora.Ora;
-    error(message: string): ora.Ora;
+    error(message: string): never;
 }
 export declare const tips: Tips;
 export {};

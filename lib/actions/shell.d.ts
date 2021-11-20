@@ -4,7 +4,7 @@ export declare namespace Shell {
      */
     const run: ({ cmd }: {
         cmd: string;
-    }) => Promise<unknown>;
+    }) => Promise<import("../utils/execute/promisify-spawn").PromisifySpawnLib.Result>;
     /**
      * 执行指令，可以获取结果，但是会丢失颜色等信息
      */

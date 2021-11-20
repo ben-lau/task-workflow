@@ -4,22 +4,25 @@ export namespace Environment {
   /**
    * 调试模式
    */
-  export const DEBUG_MODE = false;
+  let DEBUG_MODE = false;
+
+  export const setDebugMode = (isOn: boolean) => (DEBUG_MODE = !!isOn);
+
+  export const getDebugMode = () => DEBUG_MODE;
 
   /**
    * 根目录
    */
-  export const DIR_HOME = process.env.HOME!;
+  export const DIR_ROOT = process.cwd();
 
   /**
    * 存储目录
    */
-  export const DIR_STORAGE = path.resolve(DIR_HOME, '.ik-gz');
-
-  /**
-   * 用户账号
-   */
-  export const FILE_USER_ACCOUNT = path.resolve(DIR_STORAGE, 'user_account');
+  export const DIR_STORAGE = path.resolve(
+    DIR_ROOT,
+    'node_modules',
+    '.task-workflow'
+  );
 
   /**
    * 错误退出码

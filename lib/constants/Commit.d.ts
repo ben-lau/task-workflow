@@ -7,9 +7,9 @@ export declare namespace Commit {
         refactor = "refactor",
         test = "test",
         chore = "chore",
+        doc = "doc",
         conflict = "conflict",
-        merge = "merge",
-        doc = "doc"
+        merge = "merge"
     }
     interface ITypesMap {
         [p: string]: {

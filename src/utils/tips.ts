@@ -1,14 +1,38 @@
 import ora from 'ora';
 import chalk from 'chalk';
-import fs from 'fs';
-import { formatToDateTime } from './date';
+import log4js from 'log4js';
 import { Environment } from '../constants';
+import path from 'path';
 
-const LOG_DIR = Environment.DIR_STORAGE;
+const LOGS_DAYS_TO_KEEP = 3;
 
-const ERROR_CODE = Environment.ERROR_CODE;
+const category = 'log';
+// ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < MARK < OFF
+const level = 'info';
 
-const FatalReport: MethodDecorator = (
+log4js.configure({
+  appenders: {
+    [category]: {
+      type: 'dateFile',
+      filename: path.resolve(Environment.DIR_STORAGE, './log'),
+      pattern: 'yyyy-MM-dd',
+      alwaysIncludePattern: false,
+      keepFileExt: true,
+      daysToKeep: LOGS_DAYS_TO_KEEP,
+    },
+  },
+  categories: {
+    default: {
+      appenders: [category],
+      level,
+    },
+  },
+});
+
+const logger = (message: string[]) =>
+  log4js.getLogger('log').info(message.join(' '));
+
+const debugLogger: MethodDecorator = (
   target,
   key,
   desc: TypedPropertyDescriptor<any>
@@ -16,42 +40,10 @@ const FatalReport: MethodDecorator = (
   const originValue = desc.value;
   desc.value = function (...args: any[]) {
     try {
-      writeDownErrorLog(args.join(' '));
-      originValue.apply(this, args);
-    } catch (err: any) {
-      tips.warn(err);
-    }
+      logger(args);
+    } catch (err: any) {}
+    return originValue.apply(this, args);
   };
-};
-
-const ExitProcess: MethodDecorator = (
-  target,
-  key,
-  desc: TypedPropertyDescriptor<any>
-) => {
-  const originValue = desc.value;
-  desc.value = function (...args: any[]) {
-    try {
-      originValue.apply(this, args);
-    } finally {
-      process.exit(ERROR_CODE);
-    }
-  };
-};
-
-const writeDownErrorLog = (message: string) => {
-  if (!Environment.DEBUG_MODE) {
-    return;
-  }
-  const fileName = `${LOG_DIR}/${formatToDateTime(Date.now())}.log`;
-  try {
-    if (!fs.existsSync(LOG_DIR)) {
-      fs.mkdirSync(LOG_DIR, { recursive: true });
-    }
-    fs.appendFileSync(fileName, message);
-  } catch (err: any) {
-    tips.warn(err);
-  }
 };
 
 class Tips {
@@ -64,29 +56,37 @@ class Tips {
   }
 
   hideLoading() {
-    return this.loading.stop();
+    if (this.loading.isSpinning) {
+      return this.succeed(this.loading.text);
+    } else {
+      return this.loading.stop();
+    }
   }
 
   succeed(message: string) {
     return this.loading.succeed(chalk.green(message));
   }
 
+  @debugLogger
   log(message: string) {
-    return console.log(chalk.blue(message));
+    if (Environment.getDebugMode()) {
+      console.log(chalk.blue(message));
+    }
   }
 
   info(message: string) {
-    return this.loading.info(chalk.blue(message));
+    return console.log(chalk.blue(message));
   }
 
+  @debugLogger
   warn(message: string) {
     return this.loading.warn(chalk.yellow(message));
   }
 
-  @ExitProcess
-  @FatalReport
+  @debugLogger
   error(message: string) {
-    return this.loading.fail(chalk.red(message));
+    this.loading.fail(chalk.red(message));
+    return process.exit(Environment.ERROR_CODE);
   }
 }
 

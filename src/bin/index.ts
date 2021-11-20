@@ -3,19 +3,28 @@ import { program } from 'commander';
 import path from 'path';
 import fs from 'fs';
 import { tips } from '../utils/tips';
+import { Environment } from '../constants';
 
 interface IWorkStartParams {
   from?: string;
+  debug?: boolean;
   workflowId?: string;
 }
 
 export const workStart = async ({
   from,
+  debug,
   workflowId,
 }: IWorkStartParams = {}) => {
-  program.option('-f, --from <path>', '初始化文件路径').parse(process.argv);
+  program
+    .option('-f, --from <path>', '初始化文件路径')
+    .option('--debug', '开启调试模式')
+    .parse(process.argv);
 
-  from = from || program.from;
+  from ??= program.from;
+  debug ??= program.debug;
+
+  Environment.setDebugMode(!!debug);
 
   if (from) {
     const fromPath = path.resolve(process.cwd(), from);

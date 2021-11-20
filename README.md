@@ -143,7 +143,7 @@ const task2 = Tasks.File.copyTo(lastParams => [
 
 ### todos
 
-- [ ] 日志系统重构
+- [x] 日志系统重构
 - [x] 修改 compose 实现
 - [x] 更好用的 shell
 - [x] 全局调用项目内部配置，静态挂载正确化

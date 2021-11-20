@@ -84,19 +84,19 @@ export class Workflow {
         const { name, task, skip } = this.validateStep(step);
         const taskIndex = index + 1;
         // 打印空行
-        tips.log('');
+        tips.info('');
 
         if (await skip(prev)) {
-          tips.log(`==${taskIndex}、【${name}】被跳过==`);
+          tips.info(`==${taskIndex}、【${name}】被跳过==`);
           return await next(prev);
         }
 
-        tips.log(`==${taskIndex}、开始【${name}】==`);
+        tips.info(`==${taskIndex}、开始【${name}】==`);
 
         timer.start(name);
         const result = await task(prev);
         const timeConsuming = timer.end(name);
-        tips.log(`==${taskIndex}、【${name}】完成，耗时${timeConsuming}ms==`);
+        tips.info(`==${taskIndex}、【${name}】完成，耗时${timeConsuming}ms==`);
 
         return await next(result);
       });
