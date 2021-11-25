@@ -41,7 +41,7 @@ const debugLogger: MethodDecorator = (
   desc.value = function (...args: any[]) {
     try {
       logger(args);
-    } catch (err: any) {}
+    } catch (err: unknown) {}
     return originValue.apply(this, args);
   };
 };

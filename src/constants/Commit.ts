@@ -12,9 +12,7 @@ export namespace Commit {
     merge = 'merge',
   }
 
-  interface ITypesMap {
-    [p: string]: { name: string; value: string };
-  }
+  type ITypesMap = Record<Types, { name: string; value: Types }>;
 
   export const typesMap: ITypesMap = {
     [Types.feat]: {

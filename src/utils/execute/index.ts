@@ -1,5 +1,6 @@
 import { promisifySpawn, PromisifySpawnLib } from './promisify-spawn';
 import { tips } from '../tips';
+import { Awaited } from '../tools';
 
 interface ExecuteOptions extends PromisifySpawnLib.Options {
   /**
@@ -59,17 +60,18 @@ export const execute = async (
     const result = await promisifySpawn(command, argumentList, options);
     tips.log(JSON.stringify(result));
     return result;
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const error = err as Awaited<ReturnType<typeof promisifySpawn>>;
     const cmd = `${command} ${argumentList.join(' ')}`;
     if (options.level === EnumExecuteLevel.Fatal) {
-      tips.error(getErrorMessageInExecute(err, cmd));
+      tips.error(getErrorMessageInExecute(error, cmd));
       /* never */
-      return Promise.reject(err);
+      return Promise.reject(error);
     } else if (options.level === EnumExecuteLevel.Warn) {
-      tips.warn(getWarnMessageInExecute(err));
-      return err;
+      tips.warn(getWarnMessageInExecute(error));
+      return error;
     } else {
-      return Promise.reject(err);
+      return Promise.reject(error);
     }
   }
 };

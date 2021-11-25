@@ -87,7 +87,7 @@ export class Workflow {
         tips.info('');
 
         if (await skip(prev)) {
-          tips.info(`==${taskIndex}、【${name}】被跳过==`);
+          tips.warn(`==${taskIndex}、【${name}】被跳过==`);
           return await next(prev);
         }
 

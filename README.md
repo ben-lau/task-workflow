@@ -147,5 +147,5 @@ const task2 = Tasks.File.copyTo(lastParams => [
 - [x] 修改 compose 实现
 - [x] 更好用的 shell
 - [x] 全局调用项目内部配置，静态挂载正确化
-- [ ] git 模块方法的重构
+- [x] git 模块方法的重构
 - [ ] 增加 task 错误钩子
