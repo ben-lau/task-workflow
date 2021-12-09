@@ -38,15 +38,17 @@ export namespace Git {
   export const commit = async ({
     message,
     maxChanges = Commit.DEFAULT_MAX_CHANGES,
+    exitWhenEmpty = true,
   }: {
     message: string;
     maxChanges?: number;
+    exitWhenEmpty?: boolean;
   }) => {
     tips.showLoading('检查工作区');
     const count = await getCountOfToBeCommit();
     tips.hideLoading();
 
-    if (count === 0) {
+    if (count === 0 && exitWhenEmpty) {
       tips.error('无需要提交的文件');
       return;
     } else if (
@@ -61,12 +63,14 @@ export namespace Git {
       return;
     }
 
+    const _git = exitWhenEmpty ? git : gitWithoutBreak;
+
     tips.showLoading('添加文件');
-    await git('add', '-A');
+    await _git('add', '-A');
     tips.hideLoading();
 
     tips.showLoading('提交');
-    await git('commit', '-m', message);
+    await _git('commit', '-m', message);
     tips.hideLoading();
   };
 
@@ -77,12 +81,12 @@ export namespace Git {
     const { code, message } = await gitInSilent('pull', '--ff');
     tips.hideLoading();
 
-    if (
-      code !== CODE_SUCCESS &&
-      (await getIsHasConflict({ message })) // 防止git输出为中文
-    ) {
+    if (code !== CODE_SUCCESS && (await getIsHasConflict({ message }))) {
       if (await waitForDealWithConflict()) {
-        await commit({ message: `${Commit.Types.conflict}: 合并冲突` });
+        await commit({
+          message: `${Commit.Types.conflict}: 合并冲突`,
+          exitWhenEmpty: false,
+        });
       } else {
         tips.error('发现冲突，请解决后再提交');
         return;
@@ -163,16 +167,44 @@ export namespace Git {
   };
 
   /**
+   * 检出文件
+   */
+  export const checkoutFiles = async ({
+    files,
+    exitWhenNotExist = false,
+  }: {
+    files: { path: string; branch: string }[];
+    exitWhenNotExist: boolean;
+  }) => {
+    const _git = exitWhenNotExist ? git : gitWithoutBreak;
+    const map = files.reduce(
+      (prev, curr) => ({
+        ...prev,
+        [curr.branch]: [...(prev[curr.branch] || []), curr.path],
+      }),
+      {} as Record<string, string[]>
+    );
+
+    for await (const [branch, paths] of Object.entries(map)) {
+      tips.showLoading(`正在从【${branch}】恢复【${paths.join(',')}】`);
+      await _git('checkout', branch, '--', ...paths);
+      tips.hideLoading();
+    }
+  };
+
+  /**
    * 合并操作
    */
   export const merge = async ({
     branch,
     message,
     fastForward = true,
+    needCheckoutFiles,
   }: {
     branch: string;
     message?: string;
     fastForward?: boolean;
+    needCheckoutFiles?: Parameters<typeof checkoutFiles>[0];
   }) => {
     tips.showLoading(`正在合并【${branch}】`);
     const currentBranch = await getCurrentBranchName();
@@ -191,15 +223,30 @@ export namespace Git {
     );
     tips.hideLoading();
 
+    // 合并报错，且信息为冲突时
     if (code !== CODE_SUCCESS && (await getIsHasConflict({ message: rs }))) {
+      // 保留部分文件
+      needCheckoutFiles && (await checkoutFiles(needCheckoutFiles));
+      // 检查冲突是否存在
       if (await waitForDealWithConflict()) {
-        await commit({ message: mergeMessage });
+        await commit({
+          message: rs,
+          exitWhenEmpty: false,
+        });
       } else {
         tips.error('发现冲突，请解决后再提交');
       }
     } else if (code !== CODE_SUCCESS) {
       tips.error(rs);
       return Promise.reject(rs);
+    } else if (needCheckoutFiles) {
+      await checkoutFiles(needCheckoutFiles);
+      if (await getToBeCommit()) {
+        await commit({
+          message: `${Commit.Types.merge} 合并保留部分文件`,
+          exitWhenEmpty: false,
+        });
+      }
     }
   };
 
@@ -404,7 +451,7 @@ export namespace Git {
    * 获取remote名称
    */
   export const getRemoteName = async () => {
-    const { code, message } = await gitInSilent('remote');
+    const { code, message } = await gitWithoutBreak('remote');
     return code !== CODE_SUCCESS ? 'origin' : message || 'origin';
   };
 }

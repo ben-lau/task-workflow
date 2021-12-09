@@ -17,14 +17,23 @@ const NoNewLine =
     };
   };
 
+/**
+ * git方法，报错即退出
+ */
 export const git = NoNewLine((...args: Array<string>) =>
   execute(cmdGit, args, { level: EnumExecuteLevel.Fatal })
 );
 
+/**
+ * git方法，错误仅仅打印提示
+ */
 export const gitWithoutBreak = NoNewLine((...args: Array<string>) =>
   execute(cmdGit, args, { level: EnumExecuteLevel.Warn })
 );
 
+/**
+ * git方法，错误也无提示
+ */
 export const gitInSilent = NoNewLine(async (...args: Array<string>) => {
   try {
     return await execute(cmdGit, args, { level: EnumExecuteLevel.None });

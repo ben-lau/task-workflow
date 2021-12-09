@@ -13,9 +13,10 @@ export declare namespace Git {
     /**
      * 提交操作
      */
-    const commit: ({ message, maxChanges, }: {
+    const commit: ({ message, maxChanges, exitWhenEmpty, }: {
         message: string;
         maxChanges?: number | undefined;
+        exitWhenEmpty?: boolean | undefined;
     }) => Promise<void>;
     const pull: () => Promise<undefined>;
     /**
@@ -36,12 +37,29 @@ export declare namespace Git {
         branch: string;
     }) => Promise<undefined>;
     /**
+     * 检出文件
+     */
+    const checkoutFiles: ({ files, exitWhenNotExist, }: {
+        files: {
+            path: string;
+            branch: string;
+        }[];
+        exitWhenNotExist: boolean;
+    }) => Promise<void>;
+    /**
      * 合并操作
      */
-    const merge: ({ branch, message, fastForward, }: {
+    const merge: ({ branch, message, fastForward, needCheckoutFiles, }: {
         branch: string;
         message?: string | undefined;
         fastForward?: boolean | undefined;
+        needCheckoutFiles?: {
+            files: {
+                path: string;
+                branch: string;
+            }[];
+            exitWhenNotExist: boolean;
+        } | undefined;
     }) => Promise<undefined>;
     /**
      * 克隆仓库
