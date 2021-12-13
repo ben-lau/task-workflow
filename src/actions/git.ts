@@ -121,10 +121,10 @@ export namespace Git {
   }) => {
     if (
       await AskFor.shouldContinue({
-        message: `危险！将要强推至【${url}】：分支【${branch}】，请确认`,
+        message: `危险！将要强推至【${url}】:分支【${branch}】，请确认`,
       })
     ) {
-      tips.showLoading(`推送至远程【${url}】：分支【${branch}】`);
+      tips.showLoading(`推送至远程【${url}】:分支【${branch}】`);
       await git('push', '-u', url, `HEAD:${branch}`, '--force');
       tips.hideLoading();
     } else {
@@ -243,7 +243,7 @@ export namespace Git {
       await checkoutFiles(needCheckoutFiles);
       if (await getToBeCommit()) {
         await commit({
-          message: `${Commit.Types.merge} 合并保留部分文件`,
+          message: `${Commit.Types.merge}: 合并保留部分文件`,
           exitWhenEmpty: false,
         });
       }
