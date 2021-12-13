@@ -83,10 +83,15 @@ class Tips {
     return this.loading.warn(chalk.yellow(message));
   }
 
-  @debugLogger
   error(message: string) {
-    this.loading.fail(chalk.red(message));
-    return process.exit(Environment.ERROR_CODE);
+    return new Promise<never>(() => {
+      this.loading.fail(chalk.red(message));
+      logger([message]);
+
+      log4js.shutdown(() => {
+        process.exit(Environment.ERROR_CODE);
+      });
+    });
   }
 }
 

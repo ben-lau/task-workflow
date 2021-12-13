@@ -56,7 +56,7 @@ export class Workflow {
     Workflow.maps.set(this.name, this);
   }
 
-  private validateStep(step: Step) {
+  private async validateStep(step: Step) {
     let name = '未命名任务';
     let task: IFunctionalTask = () => void 0;
     let skip: ISkip = () => false;
@@ -65,7 +65,7 @@ export class Workflow {
       skip = step.skip ?? skip;
       task = step.use;
       if (typeof task !== 'function') {
-        tips.error(`【${name}】中找不到'use'`);
+        await tips.error(`【${name}】中找不到'use'`);
       }
     } else {
       task = step;
@@ -81,7 +81,7 @@ export class Workflow {
     return this.config.steps
       .filter(Boolean)
       .map<Middleware>((step, index) => async (prev, next) => {
-        const { name, task, skip } = this.validateStep(step);
+        const { name, task, skip } = await this.validateStep(step);
         const taskIndex = index + 1;
         // 打印空行
         tips.info('');

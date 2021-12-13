@@ -64,7 +64,7 @@ export const execute = async (
     const error = err as Awaited<ReturnType<typeof promisifySpawn>>;
     const cmd = `${command} ${argumentList.join(' ')}`;
     if (options.level === EnumExecuteLevel.Fatal) {
-      tips.error(getErrorMessageInExecute(error, cmd));
+      await tips.error(getErrorMessageInExecute(error, cmd));
       /* never */
       return Promise.reject(error);
     } else if (options.level === EnumExecuteLevel.Warn) {

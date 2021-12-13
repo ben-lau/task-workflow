@@ -7,7 +7,7 @@ declare class Tips {
     log(message: string): void;
     info(message: string): void;
     warn(message: string): ora.Ora;
-    error(message: string): never;
+    error(message: string): Promise<never>;
 }
 export declare const tips: Tips;
 export {};

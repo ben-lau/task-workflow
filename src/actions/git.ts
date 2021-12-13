@@ -49,7 +49,7 @@ export namespace Git {
     tips.hideLoading();
 
     if (count === 0 && exitWhenEmpty) {
-      tips.error('无需要提交的文件');
+      await tips.error('无需要提交的文件');
       return;
     } else if (
       maxChanges &&
@@ -59,7 +59,7 @@ export namespace Git {
         message: `本次提交修改数为${count}，是否确认继续？`,
       }))
     ) {
-      tips.error('因更改数过多而终止');
+      await tips.error('因更改数过多而终止');
       return;
     }
 
@@ -88,11 +88,11 @@ export namespace Git {
           exitWhenEmpty: false,
         });
       } else {
-        tips.error('发现冲突，请解决后再提交');
+        await tips.error('发现冲突，请解决后再提交');
         return;
       }
     } else if (code !== CODE_SUCCESS) {
-      tips.error(message);
+      await tips.error(message);
       return Promise.reject(message);
     }
   };
@@ -128,7 +128,7 @@ export namespace Git {
       await git('push', '-u', url, `HEAD:${branch}`, '--force');
       tips.hideLoading();
     } else {
-      tips.error('已取消');
+      await tips.error('已取消');
       return Promise.reject('已取消');
     }
   };
@@ -147,7 +147,7 @@ export namespace Git {
         message: '工作区尚有未提交更改，是否切换分支？',
       }))
     ) {
-      tips.error('已取消');
+      await tips.error('已取消');
       return Promise.reject('已取消');
     }
 
@@ -234,10 +234,10 @@ export namespace Git {
           exitWhenEmpty: false,
         });
       } else {
-        tips.error('发现冲突，请解决后再提交');
+        await tips.error('发现冲突，请解决后再提交');
       }
     } else if (code !== CODE_SUCCESS) {
-      tips.error(rs);
+      await tips.error(rs);
       return Promise.reject(rs);
     } else if (needCheckoutFiles) {
       await checkoutFiles(needCheckoutFiles);
