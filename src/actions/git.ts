@@ -230,7 +230,7 @@ export namespace Git {
       // 检查冲突是否存在
       if (await waitForDealWithConflict()) {
         await commit({
-          message: rs,
+          message: mergeMessage,
           exitWhenEmpty: false,
         });
       } else {
