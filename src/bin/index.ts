@@ -1,7 +1,7 @@
 import { Workflow } from '../workflow';
 import { program } from 'commander';
 import path from 'path';
-import fs from 'fs';
+import fse from 'fs-extra';
 import { tips } from '../utils/tips';
 import { Environment } from '../constants';
 
@@ -28,7 +28,7 @@ export const workStart = async ({
 
   if (from) {
     const fromPath = path.resolve(process.cwd(), from);
-    if (!fs.existsSync(fromPath)) {
+    if (!fse.existsSync(fromPath)) {
       tips.error(`配置文件：${fromPath} 不存在`);
     }
     await import(fromPath);

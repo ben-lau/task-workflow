@@ -2,7 +2,6 @@ import ora from 'ora';
 import chalk from 'chalk';
 import log4js from 'log4js';
 import { Environment } from '../constants';
-import path from 'path';
 
 const category = 'log';
 // ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < MARK < OFF
@@ -12,7 +11,7 @@ log4js.configure({
   appenders: {
     [category]: {
       type: 'fileSync',
-      filename: path.resolve(Environment.DIR_STORAGE, './log'),
+      filename: Environment.FILE_LOG,
       maxLogSize: 10 * 1024 * 1024, // 10m 大概10多万行
       backups: 5,
     },

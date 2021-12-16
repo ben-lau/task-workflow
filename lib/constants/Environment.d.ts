@@ -10,6 +10,10 @@ export declare namespace Environment {
      */
     const DIR_STORAGE: string;
     /**
+     * 日志目录
+     */
+    const FILE_LOG: string;
+    /**
      * 错误退出码
      */
     const ERROR_CODE = 10;

@@ -1,4 +1,5 @@
 import path from 'path';
+import fse from 'fs-extra';
 
 export namespace Environment {
   /**
@@ -23,6 +24,14 @@ export namespace Environment {
     'node_modules',
     '.task-workflow'
   );
+
+  /**
+   * 日志目录
+   */
+  export const FILE_LOG = path.resolve(DIR_STORAGE, './log');
+
+  // 确保文件存在
+  fse.ensureFileSync(FILE_LOG);
 
   /**
    * 错误退出码
