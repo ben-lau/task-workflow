@@ -4,8 +4,6 @@ import log4js from 'log4js';
 import { Environment } from '../constants';
 import path from 'path';
 
-const LOGS_DAYS_TO_KEEP = 3;
-
 const category = 'log';
 // ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < MARK < OFF
 const level = 'info';
@@ -13,12 +11,10 @@ const level = 'info';
 log4js.configure({
   appenders: {
     [category]: {
-      type: 'dateFile',
+      type: 'fileSync',
       filename: path.resolve(Environment.DIR_STORAGE, './log'),
-      pattern: 'yyyy-MM-dd',
-      alwaysIncludePattern: false,
-      keepFileExt: true,
-      daysToKeep: LOGS_DAYS_TO_KEEP,
+      maxLogSize: 10 * 1024 * 1024, // 10m 大概10多万行
+      backups: 5,
     },
   },
   categories: {
@@ -83,15 +79,10 @@ class Tips {
     return this.loading.warn(chalk.yellow(message));
   }
 
+  @debugLogger
   error(message: string) {
-    return new Promise<never>(() => {
-      this.loading.fail(chalk.red(message));
-      logger([message]);
-
-      log4js.shutdown(() => {
-        process.exit(Environment.ERROR_CODE);
-      });
-    });
+    this.loading.fail(chalk.red(message));
+    return process.exit(Environment.ERROR_CODE);
   }
 }
 

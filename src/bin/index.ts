@@ -29,7 +29,7 @@ export const workStart = async ({
   if (from) {
     const fromPath = path.resolve(process.cwd(), from);
     if (!fs.existsSync(fromPath)) {
-      await tips.error(`配置文件：${fromPath} 不存在`);
+      tips.error(`配置文件：${fromPath} 不存在`);
     }
     await import(fromPath);
   }

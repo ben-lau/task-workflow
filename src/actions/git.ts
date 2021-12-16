@@ -49,7 +49,7 @@ export namespace Git {
     tips.hideLoading();
 
     if (count === 0 && exitWhenEmpty) {
-      await tips.error('无需要提交的文件');
+      tips.error('无需要提交的文件');
       return;
     } else if (
       maxChanges &&
@@ -59,7 +59,7 @@ export namespace Git {
         message: `本次提交修改数为${count}，是否确认继续？`,
       }))
     ) {
-      await tips.error('因更改数过多而终止');
+      tips.error('因更改数过多而终止');
       return;
     }
 
@@ -88,11 +88,11 @@ export namespace Git {
           exitWhenEmpty: false,
         });
       } else {
-        await tips.error('发现冲突，请解决后再提交');
+        tips.error('发现冲突，请解决后再提交');
         return;
       }
     } else if (code !== CODE_SUCCESS) {
-      await tips.error(message);
+      tips.error(message);
       return Promise.reject(message);
     }
   };
@@ -128,7 +128,7 @@ export namespace Git {
       await git('push', '-u', url, `HEAD:${branch}`, '--force');
       tips.hideLoading();
     } else {
-      await tips.error('已取消');
+      tips.error('已取消');
       return Promise.reject('已取消');
     }
   };
@@ -147,7 +147,7 @@ export namespace Git {
         message: '工作区尚有未提交更改，是否切换分支？',
       }))
     ) {
-      await tips.error('已取消');
+      tips.error('已取消');
       return Promise.reject('已取消');
     }
 
@@ -176,6 +176,7 @@ export namespace Git {
     files: { path: string; branch: string }[];
     exitWhenNotExist: boolean;
   }) => {
+    const currentBranch = await getCurrentBranchName();
     const _git = exitWhenNotExist ? git : gitWithoutBreak;
     const map = files.reduce(
       (prev, curr) => ({
@@ -187,7 +188,19 @@ export namespace Git {
 
     for await (const [branch, paths] of Object.entries(map)) {
       tips.showLoading(`正在从【${branch}】恢复【${paths.join(',')}】`);
-      await _git('checkout', branch, '--', ...paths);
+      if (branch === currentBranch) {
+        for await (const path of paths) {
+          await _git('reset', '--', path);
+        }
+      }
+      await _git(
+        ...[
+          'checkout',
+          branch === currentBranch ? '' : branch,
+          '--',
+          ...paths,
+        ].filter(Boolean)
+      );
       tips.hideLoading();
     }
   };
@@ -217,7 +230,8 @@ export namespace Git {
     const { code, message: rs } = await gitInSilent(
       'merge',
       remoteBranchName,
-      fastForward ? '--ff' : '--no-ff',
+      fastForward && !needCheckoutFiles ? '--ff' : '--no-ff',
+      !needCheckoutFiles ? '--commit' : '--no-commit',
       '-m',
       mergeMessage
     );
@@ -234,16 +248,19 @@ export namespace Git {
           exitWhenEmpty: false,
         });
       } else {
-        await tips.error('发现冲突，请解决后再提交');
+        tips.error('发现冲突，请解决后再提交');
+        return Promise.reject(rs);
       }
     } else if (code !== CODE_SUCCESS) {
-      await tips.error(rs);
+      tips.error(rs);
       return Promise.reject(rs);
     } else if (needCheckoutFiles) {
       await checkoutFiles(needCheckoutFiles);
-      if (await getToBeCommit()) {
+
+      // 是否在merge中
+      if (await getCurrentMergeHash()) {
         await commit({
-          message: `${Commit.Types.merge}: 合并保留部分文件`,
+          message: mergeMessage,
           exitWhenEmpty: false,
         });
       }
@@ -276,6 +293,19 @@ export namespace Git {
     // git rev-parse --abbrev-ref HEAD
     const { message } = await git('rev-parse', '--abbrev-ref', 'HEAD');
     return message;
+  };
+
+  /**
+   * 获取当前合并的commit hash
+   */
+  export const getCurrentMergeHash = async () => {
+    const { code, message } = await gitInSilent(
+      'rev-parse',
+      '-q',
+      '--verify',
+      'MERGE_HEAD'
+    );
+    return code === CODE_SUCCESS ? message : '';
   };
 
   /**

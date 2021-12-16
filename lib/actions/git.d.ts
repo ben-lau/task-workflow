@@ -74,6 +74,10 @@ export declare namespace Git {
      */
     const getCurrentBranchName: () => Promise<string>;
     /**
+     * 获取当前合并的commit hash
+     */
+    const getCurrentMergeHash: () => Promise<string>;
+    /**
      * 获取本地分支是否存在
      */
     const getIsExistLocalBranch: ({ branch, }: {
