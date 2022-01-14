@@ -1,8 +1,6 @@
-# Changelog
+# [1.2.0](https://github.com/ben-lau/task-workflow/compare/v1.2.0-alpha.8...v1.2.0) (2022-01-14)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.2.0](https://github.com/ben-lau/task-workflow/compare/v1.2.0-alpha.8...v1.2.0) (2022-01-14)
 
 # [1.2.0-alpha.8](https://github.com/ben-lau/task-workflow/compare/v1.2.0-alpha.7...v1.2.0-alpha.8) (2021-12-16)
 
@@ -460,3 +458,6 @@ All notable changes to this project will be documented in this file. See [standa
 * 基本完成流程闭环,新增流程类和方法型任务创建器 ([b34cada](https://github.com/ben-lau/task-workflow/commit/b34cadaddccee97cb36a7466081e2332a720e3d4))
 * 完善一些api和尝试了一些配置 ([f06f8af](https://github.com/ben-lau/task-workflow/commit/f06f8afcf0427733cc0be90ab4e90c72dd4d96b6))
 * 更新流程图和一些配置 ([1e4a734](https://github.com/ben-lau/task-workflow/commit/1e4a73477f20b3d7e985276b44a632ed5183f950))
+
+
+
