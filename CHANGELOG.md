@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ben-lau/task-workflow/compare/v1.2.0...v1.2.1) (2022-07-01)
+
+
+### Features
+
+* 降低fs-extra版本提升兼容性 ([6602dfe](https://github.com/ben-lau/task-workflow/commit/6602dfe364b7282835767d5b086a1c8d83b98535))
+
+
+
 # [1.2.0](https://github.com/ben-lau/task-workflow/compare/v1.2.0-alpha.8...v1.2.0) (2022-01-14)
 
 
