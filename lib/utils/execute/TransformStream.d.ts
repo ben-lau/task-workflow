@@ -1,4 +1,5 @@
 /// <reference types="node" />
+/// <reference types="node" />
 import { Transform, TransformCallback } from 'stream';
 export declare class TranformStream extends Transform {
     private _encode;

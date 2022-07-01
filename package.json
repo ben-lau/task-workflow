@@ -28,7 +28,7 @@
     "流程化任务"
   ],
   "scripts": {
-    "build": "rm -rf lib/ && rollup -c rollup.config.js",
+    "build": "rimraf lib/ && rollup -c rollup.config.js",
     "lint": "eslint src --fix --ext .ts,.tsx",
     "to-self": "work-start --from workflow.config.js to-self",
     "release:patch": "work-start --from workflow.config.js release:patch",
@@ -54,7 +54,7 @@
     "chalk": "^4.1.0",
     "commander": "^6.2.1",
     "cross-spawn": "^7.0.3",
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^9.1.0",
     "inquirer": "^7.3.3",
     "log4js": "^6.3.0",
     "minimist": "^1.2.5",
@@ -71,6 +71,7 @@
     "conventional-changelog-cli": "^2.2.2",
     "eslint": "^7.15.0",
     "husky": "^4.3.0",
+    "rimraf": "^3.0.2",
     "rollup": "^2.34.2",
     "rollup-plugin-typescript2": "^0.30.0",
     "rollup-plugin-uglify": "^6.0.4",
