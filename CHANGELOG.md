@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ben-lau/task-workflow/compare/v1.2.1...v1.2.2) (2022-07-04)
+
+
+### Bug Fixes
+
+* 修复因log4js内置依赖不支持node12导致的问题 ([89377bb](https://github.com/ben-lau/task-workflow/commit/89377bb9ea5951b0e807fd7919ae36d1404c2f44))
+
+
+
 ## [1.2.1](https://github.com/ben-lau/task-workflow/compare/v1.2.0...v1.2.1) (2022-07-01)
 
 
