@@ -193,6 +193,7 @@ export namespace Git {
           await _git('reset', '--', path);
         }
       }
+      // git ls-files [file]
       await _git(
         ...[
           'checkout',
