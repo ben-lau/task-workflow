@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ben-lau/task-workflow/compare/v1.2.2...v1.2.3) (2023-03-02)
+
+
+### Bug Fixes
+
+* merge时将fetch目标远程 ([a9b9dd2](https://github.com/ben-lau/task-workflow/commit/a9b9dd2d1220533f59fb9529446132cde3e0e962))
+
+
+
 ## [1.2.2](https://github.com/ben-lau/task-workflow/compare/v1.2.1...v1.2.2) (2022-07-04)
 
 
@@ -384,8 +393,8 @@
 
 ### Features
 
-* 新增mr提示,常量模块分层,shell命令输出到控制台 ([2d0560c](https://github.com/ben-lau/task-workflow/commit/2d0560c79115395da0f88d10f8f5003c511158e3))
 * 更改文档,新增skip选项 ([f4a3594](https://github.com/ben-lau/task-workflow/commit/f4a359436796ecc819c16cc31f17ef88cb31a792))
+* 新增mr提示,常量模块分层,shell命令输出到控制台 ([2d0560c](https://github.com/ben-lau/task-workflow/commit/2d0560c79115395da0f88d10f8f5003c511158e3))
 
 
 
@@ -421,8 +430,8 @@
 
 ### Bug Fixes
 
-* 回退获取分支名实现,优化了指令错误提示 ([a176a11](https://github.com/ben-lau/task-workflow/commit/a176a11a68d605311a75557e8ee10c196795ec5a))
 * 更改获取分支名的任务实现 ([9cde2c5](https://github.com/ben-lau/task-workflow/commit/9cde2c5fd20af1955b204902dd3194c6234c5472))
+* 回退获取分支名实现,优化了指令错误提示 ([a176a11](https://github.com/ben-lau/task-workflow/commit/a176a11a68d605311a75557e8ee10c196795ec5a))
 
 
 
@@ -446,8 +455,8 @@
 
 ### Features
 
-* 增加克隆任务 ([7d9cdd9](https://github.com/ben-lau/task-workflow/commit/7d9cdd99dcca6dcd36a0ad42c789d3793be70bb6))
 * 新增克隆任务,增加传入promise函数参数支持 ([3aae44a](https://github.com/ben-lau/task-workflow/commit/3aae44ab4537658cb3cf9a16c709d2a00a5146d9))
+* 增加克隆任务 ([7d9cdd9](https://github.com/ben-lau/task-workflow/commit/7d9cdd99dcca6dcd36a0ad42c789d3793be70bb6))
 
 
 
@@ -465,17 +474,17 @@
 
 ### Bug Fixes
 
-* **doc.drawio:** 流程图背景修改 ([9d51157](https://github.com/ben-lau/task-workflow/commit/9d51157014eb65776b4f6d95893f7bfa40374141))
-* 修复判断是否存在本地分支的bug ([2fb1192](https://github.com/ben-lau/task-workflow/commit/2fb1192ee88f3b0ff37656cda772351755979fa2))
 * 修复合并时message规范 ([e04fdf0](https://github.com/ben-lau/task-workflow/commit/e04fdf05fdc3c641d050326d3451a72167ed3f2d))
+* 修复判断是否存在本地分支的bug ([2fb1192](https://github.com/ben-lau/task-workflow/commit/2fb1192ee88f3b0ff37656cda772351755979fa2))
+* **doc.drawio:** 流程图背景修改 ([9d51157](https://github.com/ben-lau/task-workflow/commit/9d51157014eb65776b4f6d95893f7bfa40374141))
 
 
 ### Features
 
-* 修改了一些工具方法，尝试了一些初始化手段 ([60680ae](https://github.com/ben-lau/task-workflow/commit/60680ae05c82199519f3d111b79891a072343edd))
+* 更新流程图和一些配置 ([1e4a734](https://github.com/ben-lau/task-workflow/commit/1e4a73477f20b3d7e985276b44a632ed5183f950))
 * 基本完成流程闭环,新增流程类和方法型任务创建器 ([b34cada](https://github.com/ben-lau/task-workflow/commit/b34cadaddccee97cb36a7466081e2332a720e3d4))
 * 完善一些api和尝试了一些配置 ([f06f8af](https://github.com/ben-lau/task-workflow/commit/f06f8afcf0427733cc0be90ab4e90c72dd4d96b6))
-* 更新流程图和一些配置 ([1e4a734](https://github.com/ben-lau/task-workflow/commit/1e4a73477f20b3d7e985276b44a632ed5183f950))
+* 修改了一些工具方法，尝试了一些初始化手段 ([60680ae](https://github.com/ben-lau/task-workflow/commit/60680ae05c82199519f3d111b79891a072343edd))
 
 
 
