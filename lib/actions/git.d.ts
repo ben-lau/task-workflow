@@ -70,6 +70,12 @@ export declare namespace Git {
         path?: string | undefined;
     }) => Promise<void>;
     /**
+     * 刷新本地仓库的远程库
+     */
+    const fetchBranch: ({ branch }: {
+        branch: string;
+    }) => Promise<string>;
+    /**
      * 获取当前分支名
      */
     const getCurrentBranchName: () => Promise<string>;

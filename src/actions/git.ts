@@ -223,6 +223,7 @@ export namespace Git {
     tips.showLoading(`正在合并【${branch}】`);
     const currentBranch = await getCurrentBranchName();
     const remoteBranchName = await getUpstreamBranchName({ branch });
+    await fetchBranch({ branch });
     const mergeMessage = `${
       Commit.Types.merge
     }: Merge branch '${branch}' into '${currentBranch}'${
@@ -283,6 +284,14 @@ export namespace Git {
     tips.showLoading(`克隆【${url}】，分支【${branch}】`);
     await git('clone', url, '-b', branch, path);
     tips.hideLoading();
+  };
+
+  /**
+   * 刷新本地仓库的远程库
+   */
+  export const fetchBranch = async ({ branch }: { branch: string }) => {
+    const { message } = await git('fetch', 'origin', branch);
+    return message;
   };
 
   /**
